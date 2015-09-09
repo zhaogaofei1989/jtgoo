@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="Customer" table="jtgoo_customer">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="serialNumber"></property>
+		<property name="name" type="string"></property>
+		<property name="mobliePhone" type="string"></property>
+		<property name="phone" type="string"></property>
+		<property name="chatTools" type="string"></property>
+		<property name="email" type="string"></property>
+		<property name="IdCart" type="string"></property>
+		<property name="companyName" type="string"></property>
+		<property name="companyPhone" type="string"></property>
+		<property name="companyAddr" type="string"></property>
+		<property name="address" type="string"></property>
+		<property name="userType" type="string"></property>
+		<property name="userName" type="string"></property>
+		<property name="remoteIp"  type="string"></property>
+		<property name="updateTime" type="string"></property>
+		<property name="regTime" type="string"></property>
+		<property name="position" type="string" column="position"></property>
+		<property name="status" type="string" column="status"></property>
+		<property name="isPeer" type="string" column="isPeer"></property>
+		<property name="peerName" type="string" column="peerName"></property>
+		<property name="inputTime" type="string" column="inputTime"></property>
+		<property name="inputName" type="string" column="inputName"></property>
+		<property name="passwd" type="string" column="passwd"></property>
+		<property name="confirmPasswd" type="string" column="confirmPasswd"></property>
+		<property name="peerPrice" type="string" column="peerPrice"></property>
+		<property name="customerServiceNames" type="string" column="customerServiceNames"></property>
+		
+		<property name="schoolName" type="string" column="schoolName"></property>
+		<property name="schoolAddr" type="string" column="schoolAddr"></property>
+		<property name="professional" type="string" column="professional"></property>
+		<property name="remark" type="string" column="remark"></property>
+		<property name="occupation" type="string" column="occupation"></property>
+		<property name="operator" type="string" column="operator"></property>
+		<property name="description" type="string" column="description"></property>
+		
+				<property name="del_status" type="string" column="del_status" length="1"></property>	
+		<many-to-one name="peerGroup" class="PeerGroup" column="peergroupId"></many-to-one>
+		<many-to-one name="saler" class="User" column="salerId"></many-to-one>
+		<!--  <set name="visaOrderSet">
+        <key column="customerId"></key>
+        <one-to-many class="VisaOrder"/>
+        </set>-->
+		<set name="lingquSet" table="jtgoo_lingqu_customer">
+        <key column="customerId"></key>
+        <many-to-many class="Lingqu" column="lingquId"></many-to-many>
+        </set>
+        <!-- "otherUser", 我与Customer(同业用户和直接用户）的多对一-->
+        <many-to-one name="otherUser" class="Customer" column="parentId"></many-to-one>
+        
+        <!-- children, 我与Customer（普通用户）的一对多 -->
+        <set name="children" cascade="delete">
+        	<key column="parentId"></key>
+        	<one-to-many class="Customer"/>
+        </set>
+        
+        
+        <set name="customerServicers" cascade="delete" order-by="id ASC">
+        	<key column="peerId"></key>
+        	<one-to-many class="CustomerServicersVo"/>
+        </set>
+        <set name="linkMans" cascade="delete" order-by="id ASC">
+        	<key column="linkManId"></key>
+        	<one-to-many class="CustomerServicersVo"/>
+        </set>
+        
+  <!-- dataTypeDetailSet, 我与DataTypeDetail的多对多 -->
+   
+
+       <set name="visaProductSet" table="jtgoo_cus_product">
+        	<key column="customerId"></key>
+ 
+        	<many-to-many class="VisaProduct" column="visaproductId"></many-to-many>
+        </set>
+ 
+       <set name="visaOrderSet" table="jtgoo_cus_dat">
+        	<key column="customerId"></key>
+        	<many-to-many class="VisaOrder" column="visaorderId"></many-to-many>
+        </set>
+
+	</class>
+
+</hibernate-mapping>
+
+
+

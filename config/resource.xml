@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<level1 name="系统管理" url="" type="1"  tag="01_00_00_00">
+<level2 name="系统管理" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_00_00">
+	<level3 name="用户管理" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_01_00">
+		<level4 name="用户列表" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_01_01"></level4>
+		<level4 name="用户添加" url="/background/RoleAction.do?method=add" icon="" type="1" tag="01_01_01_02"></level4>
+		<level4 name="用户修改" url="/background/RoleAction.do?method=edit" icon="" type="1" tag="01_01_01_03"></level4>
+		<level4 name="用户删除" url="/background/RoleAction.do?method=delete" icon="" type="1" tag="01_01_01_04"></level4>
+		<level4 name="新增按钮" url="" icon="" type="1" tag="01_01_01_05"></level4>
+	</level3>
+	<level3 name="角色管理" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_02_00">
+		<level4 name="角色列表" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_02_01"></level4>
+		<level4 name="角色添加" url="/background/RoleAction.do?method=add" icon="" type="1" tag="01_01_02_02"></level4>
+		<level4 name="角色修改" url="/background/RoleAction.do?method=edit" icon="" type="1" tag="01_01_02_03"></level4>
+		<level4 name="角色删除" url="/background/RoleAction.do?method=delete" icon="" type="1" tag="01_01_02_04"></level4>
+		<level4 name="角色按钮" url="" icon="" type="1" tag="01_01_02_05"></level4>
+	</level3>
+</level2>
+</level1>
+<level1 name="业务管理" url="" type="1"  tag="02_00_00_00">
+<level2 name="业务管理" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_00_00">
+	<level3 name="直播管理" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_01_00">
+		<level4 name="角色列表" url="/background/RoleAction.do?method=list" icon="" type="1" tag="01_01_01_00"></level4>
+		<level4 name="角色添加" url="/background/RoleAction.do?method=add" icon="" type="1" tag="01_01_02_00"></level4>
+		<level4 name="角色修改" url="/background/RoleAction.do?method=edit" icon="" type="1" tag="01_01_03_00"></level4>
+		<level4 name="角色删除" url="/background/RoleAction.do?method=delete" icon="" type="1" tag="01_01_04_00"></level4>
+		<level4 name="新增按钮" url="" icon="" type="1" tag="01_01_05_00"></level4>
+	</level3>
+</level2>
+</level1>
+
+
+</root>

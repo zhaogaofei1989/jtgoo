@@ -1,0 +1,920 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<html>
+<head>
+	<title>签证设置</title>
+		<meta   http-equiv= "Pragma"   content= "no-cache" />
+	<meta   http-equiv= "Cache-Control"   content= "no-cache" />
+	<meta   http-equiv= "Expires"   content= "0" /> 
+ <%@ include file="/WEB-INF/jsp/Public/commons-no-validate.jspf" %>
+<script type="text/javascript" src="${basePath}js/jquery.autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath}style/blue/jquery.autocomplete.css"></link>
+<script type="text/javascript" src="${basePath}/js/Date/WdatePicker.js"></script>
+<script type="text/javascript" src="${basePath}/js/artdialog/artDialog.js?skin=blue"></script>
+<script type="text/javascript" src="${basePath}/js/artdialog/iframeTools.js"></script>
+<link href="${basePath}style/loadingbar/showLoading.css" rel="stylesheet" media="screen" />
+<script type="text/javascript" src="${basePath}js/jquery.showLoading.js"></script>
+	<style type="text/css">
+		th {
+		 font-size: 12px;
+	     text-align: left;
+	     width:120px;
+	     font-weight: normal;
+	     border-bottom:1px solid #eee;
+	     padding:4px 0 4px 8px;
+		}
+	td {
+		 font-size: 12px;
+	     text-align: left;
+	     font: normal;
+	     border-bottom:1px solid #eee;
+	     padding:4px 0 4px 8px;
+		}
+
+
+</style>
+</head>
+<body>
+
+<!-- 标题显示 -->
+<div id="Title_bar">
+    <div id="Title_bar_Head">
+        <div id="Title_Head"></div>
+        <div id="Title"><!--页面标题-->
+            <img border="0" width="13" height="13" src="${basePath}/style/images/title_arrow.gif"/> 签证设置
+        </div>
+        <div id="Title_End"></div>
+    </div>
+</div>
+
+<!--显示表单内容-->
+<div id="MainArea">
+    <html:form action="/VisaOrderAction" styleId="myform">
+    	<html:hidden property="method" value="${param.id eq null ? 'add' : 'edit'}" styleId="methodId"/>
+    	<html:hidden styleId="visaorderId" property="id"/>
+    	
+         <html:hidden styleId="status" property="status" value="${status}"/>
+         <!-- 避免保存数据  actionform中没有      -->
+   
+         <html:hidden property="serialnumber"/> 
+    	<html:hidden property="user.id"/>
+    	<html:hidden property="user1"/>
+    	<html:hidden property="user2"/>
+    	<html:hidden property="user3"/>
+    	<html:hidden property="user4"/>
+    	<html:hidden property="user5"/>
+    	<html:hidden property="user6"/>
+    	<html:hidden property="user7"/>
+    	<html:hidden property="user8"/>
+    	<html:hidden property="user9"/>
+    	<html:hidden property="user10"/>
+    	<html:hidden styleId="customServiceId" property="customServiceId"/>
+    	<html:hidden styleId="customerId" property="customerId"/>
+    	<html:hidden styleId="visaProductId" property="visaProductId"/>
+    	<input type="hidden" id="userType" value="${customer_userType }"/>
+    	<!-- 客服或者联系人 ID-->
+    	<input type="hidden" id=""/>
+        <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
+        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${basePath}/style/blue/images/item_point.gif" /> 版块信息 </DIV>  -->
+        </div>
+        
+        
+
+        <!-- 表单内容显示 -->
+        <div class="ItemBlockBorder" id="table">
+   <div class="ItemBlock">
+    <table cellpadding="0" cellspacing="0" class="mainForm">
+    <c:if test="${param.id ne null}">
+     		 <tr>
+             <td>产品编号:</td>
+             <td><html:text property="serialnumber" readonly="true" styleClass="InputStyle"/></td>
+             </tr>
+    </c:if>
+        
+               <tr>
+            			 <td>签证产品</td>
+				              <td>
+				            <style type="text/css">
+				            .content_div{ margin-top:0px; font-size:14px; position:relative; }
+				            #search_divvisa_id{ position:relative; top:0px; border:1px solid #dfdfdf; text-align:left; padding:1px; left:0px;*left:0px; width:263px;*width:260px; background-color:#FFF; display:none; font-size:12px; height:100px; overflow-y:scroll;}
+				            #search_divvisa_id li{ line-height:24px;cursor:pointer}
+				            #search_divvisa_id li a{  padding-left:6px;displa
+				            
+				            
+				            y:block}
+				            #search_divvisa_id li a:hover, #search_divvisa_id li:hover{ background-color:#e2eaff}
+				            </style>
+				             <div class="content_div">
+				                        <html:text styleId="name" property="name" onfocus="if(this.value == this.defaultValue) this.value = ''" onblur="if(this.value.replace(' ','') == '') this.value = this.defaultValue;"  styleClass="InputStyle"/> *
+				                              <ul id="search_divvisa_id"></ul>
+				                              </div>
+				          </td>	
+                </tr>
+                 
+                    <tr>
+					                        <td>用户类型</td>
+					                        <td>
+					                       同业用户
+					                       <html:radio property="customer_userType" styleId="tradeUser" value="0" onclick="alter(this.value)"  style="width:60px;"/>
+					                       直接用户<html:radio property="customer_userType" styleId="directUser"  value="1" onclick="alter(this.value)" style="width:60px;"/> 
+					                       </td>
+                    </tr>
+				                      <tr id="cus_1">
+				                          <td>用户名
+				                          </td>
+				                          <td>
+												     <style type="text/css">
+												            .userNameDiv{ margin-top:0px; font-size:14px; position:relative; }
+												            #search_div_username_id{ position:relative; top:0px; border:1px solid #dfdfdf; text-align:left; padding:1px; left:0px;*left:0px; width:263px;*width:260px; background-color:#FFF; display:none; font-size:12px; height:100px; overflow-y:scroll;}
+												            #search_div_username_id li{ line-height:24px;cursor:pointer}
+												            #search_div_username_id li a{  padding-left:6px;display:block}
+												            #search_div_username_id li a:hover, #search_div_username_id li:hover{ background-color:#e2eaff}
+												            </style>
+												            <style>
+												            .customerServiceDiv{ margin-top:0px; font-size:14px; position:relative; }
+												            #search_div_customService_id{ position:relative; top:0px; border:1px solid #dfdfdf; text-align:left; padding:1px; left:0px;*left:0px; width:263px;*width:260px; background-color:#FFF; display:none; font-size:12px; height:100px; overflow-y:scroll;}
+												            #search_div_customService_id li{ line-height:24px;cursor:pointer}
+												            #search_div_customService_id li a{  padding-left:6px;display:block}
+												            #search_div_customService_id li a:hover, #search_div_customService_id li:hover{ background-color:#e2eaff}
+												            </style>
+											                       <div id="userNameDiv"> 
+											                       <html:text property="tradeUserForm" onfocus="if(this.value == this.defaultValue) this.value = ''" onblur="if(this.value.replace(' ','') == '') this.value = this.defaultValue;" styleId="userName" styleClass="InputStyle"/> 
+											                       <ul id="search_div_username_id"></ul>
+											                       </div>
+											                       <div id="customerServiceDiv">
+											                       
+											                       
+											           联系人:
+											            <select name="customerServicerId" id="customerServicerId">
+				                      				    <option selected="selected" value="">请选择</option>
+											            <c:forEach var="customVo" items="${customerServiceSet}">
+				                      				   <option value="${customVo.id}" ${customVo.id==customerServiceId?'selected':''}>${customVo.name}</option>
+				                      				   </c:forEach>
+											            </select>
+											                       </div>
+				                          </td>
+				                          </tr>
+				                  
+                         <tr id="cus_2">
+                        <td>用户姓名:</td>
+                        <td>
+									           <style>
+									            .customernameDiv{ margin-top:0px; font-size:14px; position:relative; }
+									            #search_div_customername_id{ position:relative; top:0px; border:1px solid #dfdfdf; text-align:left; padding:1px; left:0px;*left:0px; width:263px;*width:260px; background-color:#FFF; display:none; font-size:12px; height:100px; overflow-y:scroll;}
+									            #search_div_customername_id li{ line-height:24px;cursor:pointer}
+									            #search_div_customername_id li a{  padding-left:6px;display:block}
+									            #search_div_customername_id li a:hover, #search_div_customername_id li:hover{ background-color:#e2eaff}
+									            </style>
+					                        <div id="customernameDiv">
+					                        <html:text property="directUserForm" onfocus="if(this.value == this.defaultValue) this.value = ''" onblur="if(this.value.replace(' ','') == '') this.value = this.defaultValue;" styleId="customername" styleClass="InputStyle"/> 
+					                        <ul id="search_div_customername_id"></ul>
+											</div>
+                       					 </td>
+                   	 </tr>
+                    </table>
+                    <hr></hr>
+                        <table cellpadding="0" cellspacing="0" class="mainForm">
+                         <thead>
+  
+  </thead>
+   <tr id="tr_0">
+     <th style="font-size: 12px;">第一步(${user1 })</th>
+       <td>未审核</td>
+                        <td>预定时间:<html:text property="scheduledtime" styleClass="Wdate" readonly="true" disabled="true"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d',maxDate:'2100'})"/>  
+                        <br/>
+                               接单人(销售):
+                         <select name="single" id="single" class="SelectStyleSecond" style="width:85px;">
+                        <option selected="selected" value="">请选择</option>
+                         <c:forEach var="user" items="${userList }">  
+                        <option value="${user.name}" ${user.name==single?'selected':''}>${user.name}</option>
+                        </c:forEach>
+                        </select></td>
+   </tr>
+  <tr id="tr_1">
+  <th>第二步(${user2 })</th>
+  <td>已预订</td>
+ <td>预定时间:<html:text property="receivedDataTime1" styleClass="Wdate" readonly="true"  onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></td>
+	</tr>         
+  <tr id="tr_2">
+   <th>第三步(${user3 })</th>
+  <td width="80">已收到材料</td>
+    <td>
+ 					   收到材料时间: 
+ 					   <html:text property="receivedDataTime2" styleClass="Wdate" readonly="true"  onfocus="WdatePicker({startDate:'%y-%M-01',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"/>
+    			      <br/><br/>
+    				    需要补充的材料:<br/><html:textarea styleClass="TextareaStyle" property="supplementData"/>
+    				   <br/> <br/>
+    				  <c:if test="${param.id ne null }"><input type="button" onclick="uploadInfo()" value="上传客户资料清单"/></c:if><br/> <br/> <div  id="cusArray" ><c:forEach items="${cusDatList}" var="cusDat"><label style="font-weight:bolder;" onclick='showCustomerName(${visaProductId},${cusDat.customerId})'>${cusDat.customerName}</label>&nbsp;</c:forEach></div>
+  		 
+    </td>
+	</tr>         
+  <tr id="tr_3">
+     <th>第四步(${user4 })</th>
+      <td>已审核</td>
+     <td>
+          出发日期:<html:text property="receivedDataTime3" styleClass="Wdate" readonly="true"  onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/>
+                  <br/>  <br/>
+                    操作员: <select name="operator" id="operator" class="SelectStyleSecond" style="width:85px;">
+                        <option selected="selected" value="">请选择</option>
+                         <c:forEach var="user" items="${userList }">  
+                        <option value="${user.name}" ${user.name==operator?'selected':''}>${user.name}</option>
+                        </c:forEach>
+                        </select>
+                       资料已全:    否:<html:radio property="dataIsComplete"  value="0"/> 是:<html:radio property="dataIsComplete" value="1"/>
+                       
+                       <input type="button" value="增加已补充资料" onclick="addData()" />
+                      <input type="hidden" id="count" value="1"/>
+                        <div id="d1" style="padding-top: 12px;">已补充资料一: <html:text property="data1" styleClass="InputStyle"/> <html:text property="datatime1" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></div>
+                        <div id="d2" style="padding-top: 12px;">已补充资料二: <html:text property="data2" styleClass="InputStyle"/> <html:text property="datatime2" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></div>
+                        <div id="d3" style="padding-top: 12px;">已补充资料三: <html:text property="data3" styleClass="InputStyle"/> <html:text property="datatime3" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></div>
+                        <div id="d4" style="padding-top: 12px;">已补充资料四: <html:text property="data4" styleClass="InputStyle"/> <html:text property="datatime4" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></div>
+                        <div id="d5" style="padding-top: 12px;">已补充资料五: <html:text property="data5" styleClass="InputStyle"/> <html:text property="datatime5" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></div>
+                      <br/>      <br/>
+             补充材料: <br/><html:textarea styleClass="TextareaStyle" property="reviewingDocuments"/>
+             <br/>  <br/>
+              单次:<html:radio property="oneToManySelect"  value="0"/> 多次:<html:radio property="oneToManySelect" value="1"/>
+               <br/>      <br/>
+              是否代买保险: 是: <html:radio property="buyInsurance"  value="0"/> 否:<html:radio property="buyInsurance" value="1"/>
+               <br/>      <br/>
+			 保险备注: <br/><html:textarea styleClass="TextareaStyle" property="insuranceRemarks"/>
+    </td>
+	</tr>         
+  <tr id="tr_4">
+     <th>第五步(${user5 })</th>
+      <td>已预约</td>
+    <td>面试时间:<html:text property="interviewTime" styleClass="Wdate" readonly="true"  onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></td>
+	</tr>         
+  <tr id="tr_5">
+  <th>第六步(${user6})</th>
+   <td>已面试/送签</td>
+                        <td>
+                         送签人员:
+                         <select name="sentToSignPeople" id="sentToSignPeople" class="SelectStyleSecond" style="width:85px;">
+                        <option selected="selected" value="">请选择</option>
+                         <c:forEach var="user" items="${userList }">  
+                        <option value="${user.name}" ${user.name==sentToSignPeople?'selected':''}>${user.name}</option>
+                        </c:forEach>
+                        </select>
+                        <br/>
+                        <br/>
+                      送签备注: <br/><html:textarea styleClass="TextareaStyle" property="sendToRemark"/>
+  </td>
+	</tr>         
+  <tr id="tr_6">
+    <th>第七步(${user7})</th>
+    <td>已出签</td>
+                        <td>
+                        <table>
+                        <c:forEach items="${cusDatList}" var="cusDat">
+                        <tr><td>
+				  		 <label style="font-weight:bolder;" onclick='showCustomerName(${visaProductId},${cusDat.customerId})'>${cusDat.customerName}</label>&nbsp;
+                      </td>
+          <td>
+           <select name="visaResult[${cusDat.id }]" onchange="changeResult(this.value);">
+			<c:choose>
+				<c:when test="${cusDat.status==1}">
+				<option selected="selected" value="1">通过</option>
+				<option value="0">拒绝</option>
+				</c:when>
+				<c:when test="${cusDat.status==0}">
+				<option selected="selected" value="0">拒绝</option>
+				<option value="1">通过</option>
+				</c:when>
+	  			 <c:otherwise>
+				<option selected="selected"></option>
+				<option value="0">拒绝</option>
+				<option value="1">通过</option>
+				</c:otherwise>
+				</c:choose>
+			</select>
+			<c:if test="${cusDat.status==0}">
+			  <label onclick="refusedVisaResult(${cusDat.id})">拒签原因-修改</label>
+			<br/> <br/>
+	       拒绝原因:${cusDat.reason }
+			  <br/> <br/>
+		   问题分析:${cusDat.analysis }
+			<br/> <br/>
+	       处理结果:${cusDat.results }
+			  </c:if>
+		       </td>
+		   </c:forEach>
+		              </tr>
+		       </table>
+               
+              
+                 
+                        <!--  <input type="button" onclick="showVisaResult(${param.id });" value="签证结果" />--></td>
+	</tr>    
+	  <tr id="tr_7">
+	 <th>第八步(${user8 })</th>
+	  <td>已寄回</td>
+                        <td>
+               <table>
+               <tr><td>护照返还方式:</td><td><select name="passportReturnMethod" id="passportReturnMethod" onchange="changeMethod(this.value)" class="SelectStyleSecond">
+											                         <c:forEach var="passportMethod" items="${passportMethodList }">  
+											                        <option value="${passportMethod.key}" ${passportMethod.key eq passportReturnMethod?'selected':''}>${passportMethod.value}</option>
+											                        </c:forEach>
+              														 </select></td><td>
+               </tr>
+           
+             <tr id="receiver_tr"><td>  领取人:</td><td><html:text styleId="receiver" property="receiver" />   </td></tr>
+             <tr id="receiverPhone_tr"><td>  领取人电话:</td><td><html:text styleId="receiverPhone" property="receiverPhone" />   </td></tr>
+             <tr id="receiverDate_tr"><td>  领取时间:</td><td><html:text styleId="passportGetTime"  styleClass="Wdate" readonly="true" property="passportGetTime"  onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})" /></td></tr>
+             <tr id="expressMethod_tr"><td>  快递方式:</td><td><html:text styleId="expressMethod" property="expressMethod" styleClass="InputStyle"/>   </td></tr>
+            
+            <!--  <tr id="passportGetTime_tr"><td>  领取时间:</td><td><html:text styleId="passportGetTime"  styleClass="Wdate" readonly="true" property="passportGetTime"  onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})" />
+              </td></tr> --> 
+               <tr><td>快递公司:</td><td><html:text styleId="express" property="express" styleClass="InputStyle"/></td></tr>
+               <tr><td>收件人:</td><td><html:text styleId="expressContact" property="expressContact" styleClass="InputStyle"/></td></tr>
+               <tr><td>联系方式:</td><td><html:text styleId="expressContactInformation" property="expressContactInformation" styleClass="InputStyle"/></td></tr>
+               <tr><td>快递地址:</td><td><html:text styleId="expressAddress" property="expressAddress" styleClass="InputStyle"/></td></tr>
+               </table>
+                   </td>
+	</tr>      
+	<tr id="tr_8">
+	<th style="font-size: 12px;">第九步(${user9})</th>
+	 <td>已完成</td>
+                        <td>上传操作资料: <input type="button" value="上传资料" onclick="upload(${param.id })"/></td>
+    </tr>
+    
+   <tr id="tr_9">
+   <th>第十步(${user10 })</th>
+    <td>已付款</td>
+  <td>
+  <table>
+  <tr><td>付款金额</td><td><html:text styleId="payForAmount" property="express" styleClass="InputStyle" /></td></tr>
+  <tr><td>付款时间</td><td><html:text property="payForTime" styleClass="Wdate" onfocus="WdatePicker({startDate:'%y-%M-01 00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/></td></tr>
+  </table>
+  
+  
+  </td>
+	</tr>  
+    
+             
+     </table>
+            </div>
+        </div>
+        <!-- 表单操作 -->
+        <div id="InputDetailBar">
+            <input id="save" type="submit" class="cmd" value="保存" onclick="return validate()"/>
+            <input type="button" class="cmd" id="saveGoOn"  onclick="return saveAndGoOn();"  value="保存并继续" />
+            <input type="button" class="cmd"  onclick="return editAndClose();"  value="保存并关闭" />
+            <input type="button" class="cmd" id="next"  onclick="nextOrBack(0)"  value="下一步" />
+            <input type="button" class="cmd" id="back" onclick="nextOrBack(1)"  value="上一步" />
+        </div>
+    </html:form>
+</div>
+
+<div class="Description">
+	说明：<br />
+	1、请先保存当前状态，否则无法执行下一步操作<br />
+</div>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+  $(function(){
+		
+			
+			$("#d2").hide();
+			$("#d3").hide();
+			$("#d4").hide();
+			$("#d5").hide();
+		});
+  //添加已补充资料
+
+
+function addData()
+{
+var count=$("#count").val();
+if(count==1)
+{
+$("#d2").show();
+$("#count").val("2");
+}
+else if(count==2)
+{
+$("#d3").show();
+$("#count").val("3");
+}
+else if(count==3)
+{
+$("#d4").show();
+$("#count").val("4");
+}
+else if(count==4)
+{
+$("#d5").show();
+$("#count").val("5");
+
+}
+
+
+}
+  
+//拒签原因
+
+function refusedVisaResult(cusDatId)
+{
+
+art.dialog.open('CustomerAction.do?method=refusedVisaResultUI&id=${cusDat.id}'+cusDatId,
+{
+    title: '拒签原因',
+    width: 800,
+    height: 340,
+    left: '50%',
+    top: '10%',
+    lock:true,
+     ok: function()
+    {
+		  var d=this.iframe.contentDocument;
+		  var reason=d.getElementById("reason").value;
+	      var analysis=d.getElementById("analysis").value;
+		  var results=d.getElementById("results").value;
+		   $.ajax({
+			 dataType: "json",
+			 url: "CustomerAction.do?method=refusedVisaResult&id="+cusDatId+"&reason="+reason+"&analysis="+analysis+"&results="+results, 
+			 success: function(msg){
+			 alert("修改成功!");
+			 }});
+		   
+    },
+    cancel:function()
+    {
+    this.close();
+    }
+    });
+
+}
+function  editAndClose()
+{
+$("#methodId").val("saveAndClose");
+if(validate())
+{
+$("#myform").submit();
+}
+}
+//添加并继续
+function saveAndGoOn()
+{
+$("#methodId").val("saveAndGoOn");
+if(validate())
+{
+$("#myform").submit();
+}
+}
+
+
+
+
+function showVisaResult(visaorderId)
+{
+art.dialog.open('CustomerAction.do?method=updateVisaResultUI&visaorderId='+visaorderId,
+{
+    title: '签证结果设置',
+    width: 800,
+    height: 340,
+    left: '50%',
+    top: '10%',
+    lock:true,
+    ok: function()
+    {
+
+    }
+  
+}
+
+);
+
+}
+
+
+function nextOrBack(value)
+{
+var status=$("#status").val();
+if(value==0)
+{
+if(status==9)
+{
+alert("订单已完成!");
+return false;
+}
+else
+{
+$("#methodId").val("savaNextUI");
+}
+}
+else
+{
+$("#methodId").val("savaBackUI");
+}
+$("#myform").submit();
+
+}
+function changeMethod(value)
+{
+//快递 1  申请人2
+if(value==1)
+{
+$("#receiver_tr").hide();
+$("#receiverDate_tr").hide();
+$("#receiverPhone_tr").hide();
+$("#expressMethod_tr").show();
+$("#receiver").val("");
+$("#receiverDate").val("");
+$("#receiverPhone").val("");
+
+
+}
+else if(value==2)
+{
+$("#receiver_tr").show();
+$("#receiverDate_tr").show();
+$("#receiverPhone_tr").show();
+$("#expressMethod_tr").hide();
+$("#expressMethod").val("");
+}
+}
+
+
+//验证是否有空,由于 jquery.autocomplete.js 和jquery.validate.js 有冲突，因此去掉validate验证，改为自己编写进行验证
+
+function validate()
+{
+var name=$("#name").val();
+var tradeUser=$("#tradeUser").attr('checked');
+var directUser=$("#directUser").attr('checked');
+var userName=$("#userName").val();
+var customername=$("#customername").val();
+if(!name && typeof(name)!="undefined" && name!=0)
+{
+$("#name").parent().append("<font color='red'>该字段不能为空</font>");
+return false;
+}
+if(tradeUser=='checked')
+{
+if(!userName && typeof(userName)!="undefined" && userName!=0)
+						{
+						$("#userNameDiv").append("<font color='red'>该字段不能为空</font>");
+						return false;
+						}
+}
+else if(directUser=='checked')
+{if(!customername && typeof(customername)!="undefined" && customername!=0)
+				
+				{
+				  $("#customernameDiv").append("<font color='red'>该字段不能为空</font>");
+						return false;
+				}
+}
+jQuery('#table').showLoading();
+return true;
+}
+
+
+
+//上传压缩文件的dialog
+function upload(id)
+{
+art.dialog.open('VisaOrderAction.do?method=uploadUI&id='+id,
+{
+    title: '上传压缩文件夹',
+    width: 800,
+    height: 240,
+    left: '50%',
+    top: '10%',
+    lock:true,
+    ok: function()
+    {
+
+    }
+  
+}
+
+);
+}
+//选择是同业用户还是普通用户
+function alter(value)
+{
+if(value==0)
+{
+$("#cus_1").show();
+$("#cus_2").hide();
+$("#tradeUser").attr('checked',true );
+$("#userType").val("0");
+}
+else 
+{
+$("#cus_1").hide();
+$("#cus_2").show();
+$("#directUser").attr('checked',true );
+$("#userType").val("1");
+}
+
+}
+
+//============================================
+function showCustomerName(visaProductId,cuid)
+{
+art.dialog.open('CustomerAction.do?method=showCustomerNameDetailUI&visaProductId='+visaProductId+'&customerId='+cuid,
+{
+    title: '其他信息',
+    width: 800,
+    height: 240,
+    left: '50%',
+    top: '10%',
+    lock:true,
+    ok: function()
+    {
+    },
+    cancel: function()
+    {
+    this.close();
+    }
+});
+}
+
+
+//============================================
+
+function uploadInfo()
+{
+var visaProductId =$("#visaProductId").val();
+var visaorderId = $("#visaorderId").val();
+art.dialog.data('visaProductId', visaProductId);
+art.dialog.data('visaorderId', visaorderId);
+/**
+*art.dialog.data('test', val);
+*/
+art.dialog.open('CustomerAction.do?method=customerUI&visaProductId='+visaProductId+'&visaorderId='+visaorderId,
+{
+    title: '添加资料清单',
+    width: 800,
+    height: 240,
+    left: '50%',
+    top: '10%',
+    cancel:false,
+    lock:true,
+    
+    ok: function()
+    {
+  var win = art.dialog.open.origin;
+$.ajax({
+ dataType: "json",
+ url: "CustomerAction.do?method=getAllCustomerName&visaorderId="+visaorderId, 
+ success: function(msg){
+ var cusArr=msg.Items;
+ // <label style="font-weight:bolder;" onclick='showCustomerId(${visaOrder.visaProduct.id },${customer.id})'>${customer.name}</label>&nbsp;
+ if(msg.Items!=null&&msg.Items.length>0)
+ {
+ win.$("#cusArray").text("");
+ for(var i=0;i<msg.Items.length;i++)
+ {
+ var obj=msg.Items[i];
+ win.$("#cusArray").append("<label style='font-weight:bolder;' onclick='showCustomerName("+obj.visaProductId+","+obj.customerId+")'>"+obj.name+"</label>&nbsp;");
+ }}
+ }});
+
+
+    this.close();
+    }
+});
+}
+
+//==============================================
+
+
+
+//=============================================
+ function setvaluevisa_id(title,id)
+                {
+                    $("#name").val(title);
+                    $("#visaProductId").val(id);
+                    $('#search_divvisa_id').hide();
+                }
+ function search_username_id(title,id,customerServiceArr)
+                {
+                if(customerServiceArr!='')
+                {
+               $("#customerServicerId").empty();
+                var cs_string=customerServiceArr.substring(0,customerServiceArr.length-1);
+               	var csarray=cs_string.split("|");
+               	$("#customerServicerId").append("<option value=''>请选择</option>");
+               	for(var i=0;i<csarray.length;i++)
+               	{
+               	var option="<option value='"+csarray[i].split(",")[0]+"'>"+csarray[i].split(",")[1]+"</option>";
+               	$("#customerServicerId").append(option);
+               	}
+                
+                }
+            
+               $("#userName").val(title);
+               $("#customerId").val(id);
+               $('#search_div_username_id').hide();
+                }
+ function search_customService_id(title,id)
+                {
+                    $("#customService").val(title);
+                    $("#customServiceId").val(id);
+                    $('#search_div_customService_id').hide();
+                }
+ function search_customername_id(title,id,customerId)
+                {
+                    $("#customername").val(title);
+                   $("#customerId").val(id);
+                    $('#search_div_customername_id').hide();
+                }
+function  visa_id_search_ajax(){
+				var value =$("#name").val();
+				if (value.length > 0){
+					$.getJSON('VisaAutoComplete', {q:value}, function(data){
+						if (data != null) {
+							var str = '';
+							$.each(data.obj, function(i,n){
+								str += '<li onclick=\'setvaluevisa_id("'+n.label+'","'+n.id+'");\'>'+n.label+'</li>';
+							});
+							$('#search_divvisa_id').html(str);
+							$('#search_divvisa_id').show();
+						} else {
+							$('#search_divvisa_id').hide();
+						}
+					});
+				} else {
+					$('#search_divvisa_id').hide();
+				} 
+}
+function  username_search_ajax(){
+
+				var value =$("#userName").val();
+				var userType =$("#userType").val();
+				if (value.length > 0){
+					$.getJSON('UserNameAutoComplete',{q:value,userType:userType},  function(data){
+						if (data != null) {
+							var str = '';
+							$.each(data.obj.customers, function(i,n){
+							
+								var customerServiceArr='';
+									$.each(n.customerservices, function(j,m){
+									customerServiceArr+=m.id+","+m.value+'|';
+								});
+							
+								str += '<li onclick=\'search_username_id("'+n.label+'","'+n.id+'","'+customerServiceArr+'");\'>'+n.label+'</li>';
+							});
+					
+							$('#search_div_username_id').html(str);
+							$('#search_div_username_id').show();
+						} else {
+							$('#search_div_username_id').hide();
+						}
+					});
+				} else {
+					$('#search_div_username_id').hide();
+				} 
+}
+     
+function  customService_search_ajax(){
+				var value =$("#customService").val();
+				if (value.length > 0){
+					$.getJSON('CustomerServicersAutoComplete',{q:value},  function(data){
+						if (data != null) {
+							var str = '';
+							$.each(data.obj, function(i,n){
+								str += '<li onclick=\'search_customService_id("'+n.label+'","'+n.id+'");\'>'+n.label+'</li>';
+							});
+							$('#search_div_customService_id').html(str);
+							$('#search_div_customService_id').show();
+						} else {
+							$('#search_div_customService_id').hide();
+						}
+					});
+				} else {
+					$('#search_div_customService_id').hide();
+				} 
+}
+function  customername_search_ajax(){
+				var value =$("#customername").val();
+				var userType =$("#userType").val();
+				if (value.length > 0){
+					$.getJSON('UserNameAutoComplete',{userType:userType,q:value},  function(data){
+						if (data != null) {
+							var str = '';
+							$.each(data.obj.customers, function(i,n){
+								str += '<li onclick=\'search_customername_id("'+n.label+'","'+n.id+'","'+n.customer+'");\'>'+n.label+'</li>';
+							});
+							$('#search_div_customername_id').html(str);
+							$('#search_div_customername_id').show();
+						} else {
+							$('#search_div_customername_id').hide();
+						}
+					});
+				} else {
+					$('#search_div_customername_id').hide();
+				} 
+}
+     
+
+     
+     
+//==============================================
+
+
+
+$(document).ready(function(){
+
+
+//===========================================
+$('#name').keyup(function(){
+					 visa_id_search_ajax();
+				});
+				
+$('#userName').keyup(function(){
+					 username_search_ajax();
+				});				
+				
+$('#customService').keyup(function(){
+					 customService_search_ajax();
+				});				
+				
+$('#customername').keyup(function(){
+					 customername_search_ajax();
+				});				
+				
+				
+//============================================
+   									  
+  
+
+
+      
+      
+      
+      
+      
+      
+      
+      //=============================================
+      //===========================================
+var id=$("#visaorderId").val();
+if(id==null||id=="")
+{
+$("#next").hide();
+$("#back").hide();
+}
+else
+{
+$("#saveGoOn").hide();
+}
+//====================================================
+var passportReturnMethod=$("#passportReturnMethod option:selected").val();
+if(passportReturnMethod==null||passportReturnMethod=="")
+{
+$("#expressMethod_tr").hide();
+$("#receiver_tr").hide();
+$("#receiverDate_tr").hide();
+$("#receiverPhone_tr").hide();
+}
+else if(passportReturnMethod==1)
+{
+$("#expressMethod_tr").show();
+$("#receiver_tr").hide();
+$("#receiverDate_tr").hide();
+$("#receiverPhone_tr").hide();
+
+}
+else if(passportReturnMethod==2)
+{
+$("#expressMethod_tr").hide();
+$("#receiver_tr").show();
+$("#receiverDate_tr").show();
+$("#receiverPhone_tr").show();
+}
+	//=============================================================
+	var tradeUser=$("#tradeUser").attr("checked");
+	var directUser=$("#directUser").attr("checked");
+	
+	if(tradeUser=="checked")
+	{
+	$("#cus_2").hide();
+	}
+	else if(directUser=="checked")
+	{
+	$("#cus_1").hide();
+	}
+	//=============================================================
+	// 隐藏一
+    var tr_length=$("[id^=tr_]").size();
+    for(var i=0;i<tr_length;i++)
+    {
+    if(i>$("#status").val())
+    {
+     $("#tr_"+i).hide();
+    }
+     }
+  });
+
+</script>
+
+
+
+

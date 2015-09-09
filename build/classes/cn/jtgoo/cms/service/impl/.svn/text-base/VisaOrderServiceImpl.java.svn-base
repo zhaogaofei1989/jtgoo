@@ -1,0 +1,95 @@
+package cn.jtgoo.cms.service.impl;
+
+import java.util.List;
+
+import org.hibernate.Query;
+
+import cn.jtgoo.cms.base.BaseDaoImpl;
+import cn.jtgoo.cms.domain.VisaOrder;
+import cn.jtgoo.cms.service.VisaOrderService;
+import cn.jtgoo.cms.util.NumberFormatTools;
+
+public class VisaOrderServiceImpl extends BaseDaoImpl<VisaOrder> implements
+		VisaOrderService {
+
+	String serialnumber = "";
+
+	@Override
+	public void save(VisaOrder entity) {
+		super.save(entity);
+		/**
+		 * 判断领区的名称
+		 */
+		Long maxId = (Long) getSession().createQuery(//
+				"select max(c.id) from VisaOrder c")//
+				.uniqueResult();
+		entity.setId(maxId);
+		if (entity.getVisaProduct().getLingqu().getName().trim().equals("上海")) {
+			serialnumber = "SH-"
+					+ NumberFormatTools.formatNumber(String.valueOf(maxId),
+							"0000000");
+		}
+
+		else if (entity.getVisaProduct().getLingqu().getName().trim().equals(
+				"北京")) {
+			serialnumber = "BJ-"
+					+ NumberFormatTools.formatNumber(String.valueOf(maxId),
+							"0000000");
+
+		}
+
+		else if (entity.getVisaProduct().getLingqu().getName().trim().equals(
+				"广州")) {
+			serialnumber = "GZ-"
+					+ NumberFormatTools.formatNumber(String.valueOf(maxId),
+							"0000000");
+
+		}
+
+		else if (entity.getVisaProduct().getLingqu().getName().trim().equals(
+				"沈阳")) {
+
+			serialnumber = "SY-"
+					+ NumberFormatTools.formatNumber(String.valueOf(maxId),
+							"0000000");
+
+		}
+
+		else if (entity.getVisaProduct().getLingqu().getName().trim().equals(
+				"成都")) {
+			serialnumber = "CD-"
+					+ NumberFormatTools.formatNumber(String.valueOf(maxId),
+							"0000000");
+		}
+		entity.setSerialnumber(serialnumber);
+		this.update(entity);
+	}
+
+
+	public void delete(Long id) {
+		/**
+		 * 删除中间表的所有数据jtgoo_cus_dat
+		 */
+		getSession().createSQLQuery("delete from jtgoo_cus_dat where visaorderId="+id).executeUpdate();
+		/**
+		 * 删除订单
+		 */
+		Object obj = getSession().get(clazz, id);
+		getSession().delete(obj);
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<VisaOrder> listByCondition(String str) {
+		List list=null;
+		StringBuffer buffer=new StringBuffer();
+		buffer.append("  FROM cn.jtgoo.cms.domain.VisaOrder vo WHERE vo.customerServicers like ?"); 
+	    Query query=this.getSession().createQuery(buffer.toString()).setParameter(0, 1);
+	    list=query.list();
+	     return list;
+	}
+
+
+	
+	
+}

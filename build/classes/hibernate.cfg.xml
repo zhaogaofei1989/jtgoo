@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+ 	<property name="hibernate.connection.driver_class">
+		com.mysql.jdbc.Driver
+		</property>
+	<property name="connection.url">
+		jdbc:mysql://127.0.0.1:3306/jtgoo?autoReconnect=true&amp;autoReconnectForPools=true&amp;useUnicode=true&amp;characterEncoding=utf8
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">root</property>
+
+<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+<!-- 最小连接数 -->
+<property name="hibernate.c3p0.min_size">5</property>
+<property name="hibernate.c3p0.max_size">30</property>
+<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+<property name="hibernate.c3p0.timeout">1800</property>
+	<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+<property name="hibernate.c3p0.initialPoolSize">10</property>
+<!-- 最大的PreparedStatement的数量 -->
+<property name="hibernate.c3p0.max_statements">0</property>
+<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒-->
+<property name="hibernate.c3p0.idle_test_period">120</property>
+<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+<property name="hibernate.c3p0.acquire_increment">2</property>
+<!-- 每次都验证连接是否可用 -->
+<property name="hibernate.c3p0.validate">true</property>
+<property name="hibernate.c3p0.testConnectionOnCheckout">true</property>
+<property name="hibernate.c3p0.maxIdleTime">1800</property>
+
+	<!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效  
+			保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试  
+			获取连接失败后该数据源将申明已断开并永久关闭。Default: false-->
+		<property name="hibernate.c3p0.breakAfterAcquireFailure">true</property>
+  
+<!-- 　<property name="preferredTestQuery">
+　 select uid from test where uid=1
+　</property> -->
+	<!-- JDBC connection properties (end) -->
+	<!-- 显示sql语句 -->
+	<property name="show_sql">true</property>
+		<!-- 自动更新表结构 -->
+	<property name="hbm2ddl.auto">update</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+	</property>
+	<!-- 声明映射文件 -->
+	<mapping resource="cn/jtgoo/cms/domain/User.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Department.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Role.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Resource.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Customer.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Lingqu.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Country.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/VisaType.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/VisaOrder.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/DataType.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/DataTypeDetail.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/VisaProduct.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Attachment.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/BaoXianAttachment.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/CusDat.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/PeerGroup.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/CustomerServicers.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/ReserveOrder.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/InsurancePackage.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/InsuranceType.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/Member.hbm.xml" />
+	<mapping resource="cn/jtgoo/cms/domain/VisaOrderAttachment.hbm.xml" />
+
+</session-factory>
+</hibernate-configuration>

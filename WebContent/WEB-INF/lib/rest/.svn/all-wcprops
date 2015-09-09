@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/jtgoo/!svn/ver/43/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest
+END
+javax.ws.rs.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/javax.ws.rs.jar
+END
+fastjson-1.1.13.jar
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/fastjson-1.1.13.jar
+END
+org.restlet.ext.xml.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jtgoo/!svn/ver/43/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.xml.jar
+END
+org.restlet.ext.spring.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.spring.jar
+END
+org.restlet.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.jar
+END
+org.restlet.ext.jaxb.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.jaxb.jar
+END
+org.restlet.ext.servlet.jar
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.servlet.jar
+END
+org.restlet.ext.jaxrs.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jtgoo/!svn/ver/32/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.jaxrs.jar
+END
+org.json.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/jtgoo/!svn/ver/43/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.json.jar
+END
+org.restlet.ext.json.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/43/branches/code/jtgooCMS/WebRoot/WEB-INF/lib/rest/org.restlet.ext.json.jar
+END

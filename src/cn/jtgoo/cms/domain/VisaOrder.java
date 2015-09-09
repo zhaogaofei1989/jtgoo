@@ -1,0 +1,1112 @@
+package cn.jtgoo.cms.domain;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang.StringUtils;
+
+import cn.jtgoo.cms.util.NumberFormatTools;
+
+/**
+ * 用户
+ * 
+ * @author zhaogaofei
+ * 
+ */
+public class VisaOrder implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * 临时变量
+	 */
+	private transient String customerServersPhone;
+	private Long id;
+	/**
+	 * 订单流程号
+	 */
+	private String serialnumber;
+	/**
+	 * 签证产品
+	 */
+	private String name;
+
+	/**
+	 * 订单状态
+	 * 0
+	 * 1已预定
+	 * 2已收材料
+	 * 3已审核材料
+	 * 4已付款
+	 * 5已预约
+	 * 6已面试/送签
+	 * 
+	 */
+	private String status;
+
+
+
+	/**
+	 * 单价
+	 */
+	private double price;
+	/**
+	 * 保险
+	 */
+	private String insurance;
+
+	/**
+	 * 总价
+	 */
+	private double totalPrice;
+
+	/**
+	 * 支付方式
+	 */
+
+	private String payment;
+	/**
+	 * 查询类型
+	 * 1用户名  2  联系人
+	 */
+	private String queryType;
+	
+	/**
+	 * 首付款
+	 */
+	private String dataIsComplete;
+
+	/**
+	 * 一个订单对应多个客户
+	 */
+	private Set<Customer> customerSet = new HashSet<Customer>();
+	/**
+	 * 一个订单对应多个客户
+	 */
+	/**
+	 * 临时数组
+	 */
+	private List<CusDat> cusDat=new ArrayList<CusDat>();
+	//同业用户
+	private Customer customer;
+	//直接用户
+	private Member member;
+	//签证附件
+	private VisaOrderAttachment visaorder_attachment;
+	
+	//select_user_id 可以存 同业用户的id 或直接用户的id，根据usertype 里进行判断是哪个表中的数据
+	private String select_user_id;
+	/**
+	 * 一个订单只能有一个visaProduct,一个visaProduct可以和多个订单相互关联
+	 */
+	private VisaProduct visaProduct = new VisaProduct();
+
+	/**
+	 * 客服人员
+	 */
+	private String customService;
+	
+	private String customServiceId;
+
+
+	/**
+	 * 一个订单只能有一个用户,一个用户可以和多个订单相互关联
+	 * 该用户为系统用户
+	 * 每个用户只能看到自己
+	 * 
+	 */
+	private User user=new User();
+	/**
+	 * 联系人列表是从同业用户 或者直接用户中调取出来的
+	 * 每个订单只能选择(对应)一个联系人
+	 */
+	private CustomerServicersVo customerServicers;
+
+
+
+
+
+	/**
+	 * 订单价格
+	 * @return
+	 */
+	double orderPrice = 0.0;
+	/**
+	 * 确认收到价格
+	 */
+	double orderSurePrice = 0.0;
+	/**
+	 * 已经收到价格
+	 */
+	double orderReceivedPrice = 0.0;
+	/**支出价格
+	 */
+	double orderExpenditurePrice = 0.0;
+	/**
+	 * 利润
+	 */
+	private double profit = 0.0;
+	/**
+	 * 接单人
+	 * @return
+	 */
+	private String single;
+	private String sentToSignPeople;
+	private String operator;
+	
+	private String user1;
+	private String user2;
+	private String user3;
+	private String user4;
+	private String user5;
+	private String user6;
+	private String user7;
+	private String user8;
+	private String user9;
+	private String user10;
+	
+
+	/**
+	 * 前台备注
+	 */
+	private String remarksReception;
+	/**
+	 * 后台备注
+	 * @return
+	 */
+	private String remarksBackstage;
+
+
+	
+	/**
+	 * 
+	 */
+	private String receivedDataTime1;
+/**
+ * 
+ */
+	private String receivedDataTime2;
+
+	/**
+	 * 出发日期
+	 */
+	private String receivedDataTime3;
+	
+	/**
+	 * 预定时间
+	 */
+	private String scheduledtime;
+	
+	/**
+	 * 面试时间
+	 */
+	private String  interviewTime;
+	
+
+	/**
+	 * 上传路径
+	 */
+	private String uploadPath;
+	/**
+	 * 需要补充的资料
+	 */
+	private String supplementData;
+	
+	/**
+	 * 补充材料
+	 */
+	private String reviewingDocuments;
+	/**
+	 * 送签时间
+	 */
+	private String sendSignedTime;
+	/**
+	 * 预计出证时间
+	 */
+	private String expectCertificateTime;
+	/**
+	 * 
+	 */
+	private String interview;
+
+	/**
+	 * 出签结果
+	 * @return
+	 */
+	private String checkResults;
+	/**
+	 * 指派跟进人
+	 * @return
+	 */
+	private String assignmentTracker;
+
+	/**
+	 * 快递公司
+	 * @return
+	 */
+
+	private String express;
+
+	/**
+	 * 快递单号
+	 * @return
+	 */
+
+	private String expressNo;
+
+	/**
+	 * 快递联系人
+	 * @return
+	 */
+
+	private String expressContact;
+
+	/**
+	 * 快递联系方式
+	 * @return
+	 */
+	private String expressContactInformation;
+	/**
+	 * 快递地址
+	 * @return
+	 */
+	private String expressAddress;
+	/**
+	 * oneToManySelect
+	 * @return
+	 * 一次多次的选择
+	 */
+	private String oneToManySelect;
+	
+	/**
+	 * 是否代买保险
+	 */
+	private String buyInsurance;
+	
+	/**保险备注**/
+	private String insuranceRemarks;
+
+/**
+ * 送签备注
+ */
+	private String sendToRemark;
+	
+	
+	
+	
+	/**
+	 * 护照返还方式
+	 * @return
+	 */
+	private String passportReturnMethod;
+	
+	/**
+	 * 护照返还时间
+	 * @return
+	 */
+	private String passportGetTime;
+	
+	/**
+	 * 快递方式
+	 * @return
+	 */
+	private String expressMethod;
+	
+	
+	//领取人
+	private String receiver;
+	//领区时间
+	private String receiverDate;
+	//领取人电话
+	private String receiverPhone;
+
+	
+	/**
+	 *录入员 
+	 */
+	private String recorder;
+	
+	/**
+	 * 增加补充时间
+	 * @return
+	 */
+	
+	
+	private String data1;
+	private String data2;
+	private String data3;
+	private String data4;
+	private String data5;
+	private String datatime1;
+	private String datatime2;
+	private String datatime3;
+	private String datatime4;
+	private String datatime5;
+	
+	
+	/**
+	 * 付款时间
+	 * @return
+	 */
+	
+	private String payForTime;
+	/**
+	 * 付款金额
+	 */
+	private Double payForAmount;
+    private String del_status;
+    /**
+     * 与面试间隔的天数
+     */
+    private long days;
+    
+    //客户类型 主要分为 同业用户 (同业分销系统专用 ) 和直接用户（member 中包涵  会员 和直接用户）
+    //0 为 同业用户 1 为直接用户
+    private Integer user_type;
+    /**
+     * 预定人数
+     */
+    private Integer num;
+    /**
+     * 0-6 岁预定人数
+     */
+    private Integer num1;
+    /**
+     * 6-12 岁预定人数
+     */
+    private Integer num2;
+    
+	public String getRecorder() {
+		return recorder;
+	}
+	public String getDel_status() {
+		return del_status;
+	}
+
+	public void setDel_status(String del_status) {
+		this.del_status = del_status;
+	}
+
+	public void setRecorder(String recorder) {
+		this.recorder = recorder;
+	}
+
+	public String getData1() {
+		return data1;
+	}
+
+	public void setData1(String data1) {
+		this.data1 = data1;
+	}
+
+	public String getData2() {
+		return data2;
+	}
+
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+
+	public String getData3() {
+		return data3;
+	}
+
+
+	public void setData3(String data3) {
+		this.data3 = data3;
+	}
+
+	public String getData4() {
+		return data4;
+	}
+
+	public void setData4(String data4) {
+		this.data4 = data4;
+	}
+
+	public String getData5() {
+		return data5;
+	}
+
+	public void setData5(String data5) {
+		this.data5 = data5;
+	}
+
+	public String getDatatime1() {
+		return datatime1;
+	}
+
+	public void setDatatime1(String datatime1) {
+		this.datatime1 = datatime1;
+	}
+
+	public String getDatatime2() {
+		return datatime2;
+	}
+
+	public void setDatatime2(String datatime2) {
+		this.datatime2 = datatime2;
+	}
+
+	public String getDatatime3() {
+		return datatime3;
+	}
+
+	public void setDatatime3(String datatime3) {
+		this.datatime3 = datatime3;
+	}
+
+	public String getDatatime4() {
+		return datatime4;
+	}
+
+	public void setDatatime4(String datatime4) {
+		this.datatime4 = datatime4;
+	}
+
+	public String getDatatime5() {
+		return datatime5;
+	}
+
+	public void setDatatime5(String datatime5) {
+		this.datatime5 = datatime5;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public String getReceiverDate() {
+		return receiverDate;
+	}
+
+	public String getBuyInsurance() {
+		return buyInsurance;
+	}
+
+	public void setBuyInsurance(String buyInsurance) {
+		this.buyInsurance = buyInsurance;
+	}
+
+	public String getSendToRemark() {
+		return sendToRemark;
+	}
+
+	public void setSendToRemark(String sendToRemark) {
+		this.sendToRemark = sendToRemark;
+	}
+
+	public String getInsuranceRemarks() {
+		return insuranceRemarks;
+	}
+
+
+
+	public String getDataIsComplete() {
+		
+		return dataIsComplete==null?"1":dataIsComplete;
+	}
+
+	public void setDataIsComplete(String dataIsComplete) {
+		this.dataIsComplete = dataIsComplete;
+	}
+
+	public Set<Customer> getCustomerSet() {
+		return customerSet;
+	}
+
+	public void setCustomerSet(Set<Customer> customerSet) {
+		this.customerSet = customerSet;
+	}
+
+	public void setInsuranceRemarks(String insuranceRemarks) {
+		this.insuranceRemarks = insuranceRemarks;
+	}
+
+	public List<CusDat> getCusDat() {
+		return cusDat;
+	}
+
+	public void setCusDat(List<CusDat> cusDat) {
+		this.cusDat = cusDat;
+	}
+
+	public void setReceiverDate(String receiverDate) {
+		this.receiverDate = receiverDate;
+	}
+
+	public String getReceiverPhone() {
+		return receiverPhone;
+	}
+
+	public void setReceiverPhone(String receiverPhone) {
+		this.receiverPhone = receiverPhone;
+	}
+
+	public String getUser1() {
+		return user1;
+	}
+
+	public void setUser1(String user1) {
+		this.user1 = user1;
+	}
+
+	public String getUser2() {
+		return user2;
+	}
+
+	public void setUser2(String user2) {
+		this.user2 = user2;
+	}
+
+	public String getQueryType() {
+		return queryType;
+	}
+
+	public void setQueryType(String queryType) {
+		this.queryType = queryType;
+	}
+
+	public String getUser3() {
+		return user3;
+	}
+
+	public void setUser3(String user3) {
+		this.user3 = user3;
+	}
+
+	public String getUser4() {
+		return user4;
+	}
+
+	public void setUser4(String user4) {
+		this.user4 = user4;
+	}
+
+	public String getCustomServiceId() {
+		return customServiceId;
+	}
+
+	public void setCustomServiceId(String customServiceId) {
+		this.customServiceId = customServiceId;
+	}
+
+	public String getUser5() {
+		return user5;
+	}
+
+	public void setUser5(String user5) {
+		this.user5 = user5;
+	}
+
+	public String getUser6() {
+		return user6;
+	}
+
+	public void setUser6(String user6) {
+		this.user6 = user6;
+	}
+
+	public String getUser7() {
+		return user7;
+	}
+
+	public void setUser7(String user7) {
+		this.user7 = user7;
+	}
+
+	public String getUser8() {
+		return user8;
+	}
+
+	public void setUser8(String user8) {
+		this.user8 = user8;
+	}
+
+	public String getUser9() {
+		return user9;
+	}
+
+	public void setUser9(String user9) {
+		this.user9 = user9;
+	}
+
+	public String getUser10() {
+		return user10;
+	}
+
+	public void setUser10(String user10) {
+		this.user10 = user10;
+	}
+
+	public String getPassportReturnMethod() {
+		return passportReturnMethod;
+	}
+
+	public void setPassportReturnMethod(String passportReturnMethod) {
+		this.passportReturnMethod = passportReturnMethod;
+	}
+
+	public String getPassportGetTime() {
+		return passportGetTime;
+	}
+
+	public void setPassportGetTime(String passportGetTime) {
+		this.passportGetTime = passportGetTime;
+	}
+
+	public String getExpressMethod() {
+		return expressMethod;
+	}
+
+	public void setExpressMethod(String expressMethod) {
+		this.expressMethod = expressMethod;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getCustomerServersPhone() {
+		return customerServersPhone;
+	}
+
+	public void setCustomerServersPhone(String customerServersPhone) {
+		this.customerServersPhone = customerServersPhone;
+	}
+
+	public String getOneToManySelect() {
+		return oneToManySelect;
+	}
+
+	public void setOneToManySelect(String oneToManySelect) {
+		this.oneToManySelect = oneToManySelect;
+	}
+
+	public String getReviewingDocuments() {
+		return reviewingDocuments;
+	}
+
+	public void setReviewingDocuments(String reviewingDocuments) {
+		this.reviewingDocuments = reviewingDocuments;
+	}
+
+	public String getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+
+
+	public String getSerialnumber() {
+		return serialnumber;
+	}
+
+	public void setSerialnumber(String serialnumber) {
+		this.serialnumber = serialnumber;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getScheduledtime() {
+		return scheduledtime;
+	}
+
+	public void setScheduledtime(String scheduledtime) {
+		this.scheduledtime = scheduledtime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+
+
+	public CustomerServicersVo getCustomerServicers() {
+		return customerServicers;
+	}
+
+	public void setCustomerServicers(CustomerServicersVo customerServicers) {
+		this.customerServicers = customerServicers;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getCustomService() {
+		return customService;
+	}
+
+	public void setCustomService(String customService) {
+		this.customService = customService;
+	}
+
+
+	public String getInterviewTime() {
+		return interviewTime;
+	}
+
+	public void setInterviewTime(String interviewTime) {
+		if(StringUtils.isNotEmpty(interviewTime))
+		{
+				setDays(NumberFormatTools.the_interval(interviewTime,NumberFormatTools.getCurrentTime()));
+		}
+		this.interviewTime = interviewTime;
+	}
+
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+
+
+
+	public String getSingle() {
+		return single;
+	}
+
+	public void setSingle(String single) {
+		this.single = single;
+	}
+
+	public String getSentToSignPeople() {
+		return sentToSignPeople;
+	}
+
+	public void setSentToSignPeople(String sentToSignPeople) {
+		this.sentToSignPeople = sentToSignPeople;
+	}
+
+	public String getOperator() {
+		return operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
+	}
+
+	public VisaProduct getVisaProduct() {
+		return visaProduct;
+	}
+
+	public void setVisaProduct(VisaProduct visaProduct) {
+		this.visaProduct = visaProduct;
+	}
+
+
+	public double getOrderPrice() {
+		return orderPrice;
+	}
+
+	public void setOrderPrice(double orderPrice) {
+		this.orderPrice = orderPrice;
+	}
+
+	public double getOrderSurePrice() {
+		return orderSurePrice;
+	}
+
+	public void setOrderSurePrice(double orderSurePrice) {
+		this.orderSurePrice = orderSurePrice;
+	}
+
+	public double getOrderReceivedPrice() {
+		return orderReceivedPrice;
+	}
+
+	public void setOrderReceivedPrice(double orderReceivedPrice) {
+		this.orderReceivedPrice = orderReceivedPrice;
+	}
+
+	public double getOrderExpenditurePrice() {
+		return orderExpenditurePrice;
+	}
+
+	public void setOrderExpenditurePrice(double orderExpenditurePrice) {
+		this.orderExpenditurePrice = orderExpenditurePrice;
+	}
+
+	public double getProfit() {
+		return profit;
+	}
+
+	public void setProfit(double profit) {
+		this.profit = profit;
+	}
+
+	public String getRemarksReception() {
+		return remarksReception;
+	}
+
+	public void setRemarksReception(String remarksReception) {
+		this.remarksReception = remarksReception;
+	}
+
+	public String getRemarksBackstage() {
+		return remarksBackstage;
+	}
+
+	public void setRemarksBackstage(String remarksBackstage) {
+		this.remarksBackstage = remarksBackstage;
+	}
+
+
+
+	public String getReceivedDataTime1() {
+		return receivedDataTime1;
+	}
+
+	public void setReceivedDataTime1(String receivedDataTime1) {
+		this.receivedDataTime1 = receivedDataTime1;
+	}
+
+	public String getReceivedDataTime2() {
+		return receivedDataTime2;
+	}
+
+	public void setReceivedDataTime2(String receivedDataTime2) {
+		this.receivedDataTime2 = receivedDataTime2;
+	}
+
+	public String getReceivedDataTime3() {
+		return receivedDataTime3;
+	}
+
+	public void setReceivedDataTime3(String receivedDataTime3) {
+		this.receivedDataTime3 = receivedDataTime3;
+	}
+
+	public String getSupplementData() {
+		return supplementData;
+	}
+
+	public void setSupplementData(String supplementData) {
+		this.supplementData = supplementData;
+	}
+
+	public String getSendSignedTime() {
+		return sendSignedTime;
+	}
+
+	public void setSendSignedTime(String sendSignedTime) {
+		this.sendSignedTime = sendSignedTime;
+	}
+
+	public String getExpectCertificateTime() {
+		return expectCertificateTime;
+	}
+
+	public void setExpectCertificateTime(String expectCertificateTime) {
+		this.expectCertificateTime = expectCertificateTime;
+	}
+
+	public String getCheckResults() {
+		return checkResults;
+	}
+
+	public void setCheckResults(String checkResults) {
+		this.checkResults = checkResults;
+	}
+
+	public String getAssignmentTracker() {
+		return assignmentTracker;
+	}
+
+	public void setAssignmentTracker(String assignmentTracker) {
+		this.assignmentTracker = assignmentTracker;
+	}
+
+	public String getExpress() {
+		return express;
+	}
+
+	public void setExpress(String express) {
+		this.express = express;
+	}
+
+	public String getExpressNo() {
+		return expressNo;
+	}
+
+	public void setExpressNo(String expressNo) {
+		this.expressNo = expressNo;
+	}
+
+	public String getExpressContact() {
+		return expressContact;
+	}
+
+	public void setExpressContact(String expressContact) {
+		this.expressContact = expressContact;
+	}
+
+	public String getExpressContactInformation() {
+		return expressContactInformation;
+	}
+
+	public void setExpressContactInformation(String expressContactInformation) {
+		this.expressContactInformation = expressContactInformation;
+	}
+
+	public String getExpressAddress() {
+		return expressAddress;
+	}
+
+	public void setExpressAddress(String expressAddress) {
+		this.expressAddress = expressAddress;
+	}
+
+	public String getInterview() {
+		return interview;
+	}
+
+	public void setInterview(String interview) {
+		this.interview = interview;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public String getPayForTime() {
+		return payForTime;
+	}
+
+	public void setPayForTime(String payForTime) {
+		this.payForTime = payForTime;
+	}
+
+	public Double getPayForAmount() {
+		return payForAmount;
+	}
+
+	public void setPayForAmount(Double payForAmount) {
+		this.payForAmount = payForAmount;
+	}
+
+	public long getDays() {
+		return days;
+	}
+
+	public void setDays(long days) {
+		this.days = days;
+	}
+
+	
+	public Integer getUser_type() {
+		return user_type;
+	}
+	public void setUser_type(Integer user_type) {
+		this.user_type = user_type;
+	}
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
+	public String getSelect_user_id() {
+		return select_user_id;
+	}
+	public void setSelect_user_id(String select_user_id) {
+		this.select_user_id = select_user_id;
+	}
+	public Integer getNum() {
+		return num;
+	}
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+	public Integer getNum1() {
+		return num1;
+	}
+	public void setNum1(Integer num1) {
+		this.num1 = num1;
+	}
+	public Integer getNum2() {
+		return num2;
+	}
+	public void setNum2(Integer num2) {
+		this.num2 = num2;
+	}
+	public VisaOrderAttachment getVisaorder_attachment() {
+		return visaorder_attachment;
+	}
+	public void setVisaorder_attachment(VisaOrderAttachment visaorder_attachment) {
+		this.visaorder_attachment = visaorder_attachment;
+	}
+
+}

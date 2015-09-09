@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="RoleActionForm" type="cn.jtgoo.cms.web.struts.formbean.RoleActionForm"></form-bean>
+		<form-bean name="DepartmentActionForm" type="cn.jtgoo.cms.web.struts.formbean.DepartmentActionForm"></form-bean>
+		<form-bean name="UserActionForm" type="cn.jtgoo.cms.web.struts.formbean.UserActionForm"></form-bean>
+		<form-bean name="ForumManageActionForm" type="cn.jtgoo.cms.web.struts.formbean.ForumManageActionForm"></form-bean>
+		<form-bean name="CustomerActionForm" type="cn.jtgoo.cms.web.struts.formbean.CustomerActionForm"></form-bean>
+		<form-bean name="VisaOrderActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaOrderActionForm"></form-bean>
+		<form-bean name="VisaTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaTypeActionForm"></form-bean>
+		<form-bean name="VisaDataTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaDataTypeActionForm"></form-bean>
+		<form-bean name="VisaDataTypeDetailActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaDataTypeDetailActionForm"></form-bean>
+		<form-bean name="VisaLingquActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaLingquActionForm"></form-bean>
+		<form-bean name="VisaCountryActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaCountryActionForm"></form-bean>
+		<form-bean name="VisaProductActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaProductActionForm"></form-bean>
+		<form-bean name="AttachmentActionForm" type="cn.jtgoo.cms.web.struts.formbean.AttachmentActionForm"></form-bean>
+		<form-bean name="PeerGroupActionForm" type="cn.jtgoo.cms.web.struts.formbean.PeerGroupActionForm"></form-bean>
+		<form-bean name="CustomerServicersActionForm" type="cn.jtgoo.cms.web.struts.formbean.CustomerServicersActionForm"></form-bean>
+		<form-bean name="ReserveOrderActionForm" type="cn.jtgoo.cms.web.struts.formbean.ReserveOrderActionForm"></form-bean>
+		<form-bean name="InsuranceTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.InsuranceTypeActionForm"></form-bean>
+		<form-bean name="InsurancePackageActionForm" type="cn.jtgoo.cms.web.struts.formbean.InsurancePackageActionForm"></form-bean>
+		<form-bean name="MemberActionForm" type="cn.jtgoo.cms.web.struts.formbean.MemberActionForm"></form-bean>
+	</form-beans>
+
+	<global-exceptions>
+	<exception key="common.file" path="/error.jsp" type="cn.jtgoo.cms.exception.AppException" handler="cn.jtgoo.cms.exception.AppExceptionHandler"></exception>
+	</global-exceptions>
+	<global-forwards />
+	<action-mappings>
+
+		<!-- 岗位管理 -->
+		<action path="/background/RoleAction" type="cn.jtgoo.cms.web.struts.action.RoleAction" parameter="method"
+			name="RoleActionForm" scope="request">
+			<forward name="list" path="/WEB-INF/jsp/RoleAction/list.jsp"></forward>
+			<forward name="saveUI" path="/WEB-INF/jsp/RoleAction/saveUI.jsp"></forward>
+			<forward name="setPrivilegeUI" path="/WEB-INF/jsp/RoleAction/setPrivilegeUI.jsp"></forward>
+			<forward name="toList" path="/background/RoleAction.do?method=list" redirect="true"></forward>
+		</action>
+		<!-- 客服管理 -->
+		<action path="/background/CustomerServicersAction" type="cn.jtgoo.cms.web.struts.action.CustomerServicersAction" parameter="method"
+			name="CustomerServicersActionForm" scope="request">
+			<forward name="list" path="/WEB-INF/jsp/CustomerServicersAction/list.jsp"></forward>
+			<forward name="saveUI" path="/WEB-INF/jsp/CustomerServicersAction/saveUI.jsp"></forward>
+			<forward name="showNameUI" path="/WEB-INF/jsp/CustomerServicersAction/showNameInfo.jsp"></forward>
+			<forward name="editUI"  path="/WEB-INF/jsp/CustomerServicersAction/saveUI.jsp"></forward>
+			<forward name="toList" path="/background/CustomerServicersAction.do?method=list" redirect="true"></forward>
+		</action>
+		<!-- 会员管理 -->
+		<action path="/background/MemberAction" type="cn.jtgoo.cms.web.struts.action.MemberAction" parameter="method"
+			name="MemberActionForm" scope="request">
+			<forward name="list" path="/WEB-INF/jsp/MemberAction/list.jsp"></forward>
+			<forward name="saveUI" path="/WEB-INF/jsp/MemberAction/saveUI.jsp"></forward>
+			<forward name="showNameUI" path="/WEB-INF/jsp/MemberAction/showNameInfo.jsp"></forward>
+			<forward name="editUI"  path="/WEB-INF/jsp/MemberAction/saveUI.jsp"></forward>
+			<forward name="toList" path="/background/MemberAction.do?method=list" redirect="true"></forward>
+			<forward name="toDirectList" path="/background/MemberAction.do?method=directList" redirect="true"></forward>
+			<forward name="directList" path="/WEB-INF/jsp/MemberAction/DirectList.jsp"></forward>
+			<forward name="directSaveUI" path="/WEB-INF/jsp/MemberAction/DirectSaveUI.jsp"></forward>
+			<forward name="directEditUI" path="/WEB-INF/jsp/MemberAction/DirectSaveUI.jsp"></forward>
+			<forward name="showMemberInfo" path="/WEB-INF/jsp/MemberAction/showMemberInfo.jsp"></forward>
+		</action>
+
+		<!-- 部门管理 -->
+		<action path="/background/DepartmentAction" type="cn.jtgoo.cms.web.struts.action.DepartmentAction"
+			parameter="method" name="DepartmentActionForm" scope="request">
+			<forward name="list" path="/WEB-INF/jsp/DepartmentAction/list.jsp"></forward>
+			<forward name="saveUI" path="/WEB-INF/jsp/DepartmentAction/saveUI.jsp"></forward>
+			<forward name="toList" path="/background/DepartmentAction.do?method=list" redirect="true"></forward>
+		</action>
+
+		<!-- 用户管理 -->
+		<action path="/background/UserAction" type="cn.jtgoo.cms.web.struts.action.UserAction" parameter="method"
+			name="UserActionForm" scope="request">
+			<forward name="list" path="/WEB-INF/jsp/UserAction/list.jsp"></forward>
+			<forward name="addUI" path="/WEB-INF/jsp/UserAction/addUI.jsp"></forward>
+			<forward name="editUI" path="/WEB-INF/jsp/UserAction/editUI.jsp"></forward>
+			<forward name="toList" path="/background/UserAction.do?method=list" redirect="true"></forward>
+			<forward name="loginUI" path="/WEB-INF/jsp/UserAction/loginUI.jsp"></forward>
+			<forward name="updatePasswdUI" path="/WEB-INF/jsp/UserAction/updatePasswdUI.jsp"></forward>
+			<forward name="showPasswdUI" path="/WEB-INF/jsp/UserAction/updatePasswdUI.jsp"></forward>
+			<forward name="logout" path="/WEB-INF/jsp/UserAction/logout.jsp"></forward>
+			<forward name="index" path="/index.jsp" redirect="true"></forward>
+		</action>
+
+		<!-- 签证产品管理 -->
+		<action path="/background/VisaDataTypeAction" type="cn.jtgoo.cms.web.struts.action.VisaDataTypeAction" parameter="method" name="VisaDataTypeActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaDataTypeAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaDataTypeAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/VisaDataTypeAction.do?method=list" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/VisaDataTypeAction/saveUI.jsp"></forward>
+		</action>
+		<action path="/background/VisaDataTypeDetailAction" type="cn.jtgoo.cms.web.struts.action.VisaDataTypeDetailAction" parameter="method" name="VisaDataTypeDetailActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaDataTypeDetailAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaDataTypeDetailAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/VisaDataTypeDetailAction.do?method=list" redirect="true"></forward>
+	   <forward name="addUI" path="/background/VisaDataTypeDetailAction.do?method=addUI" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/VisaDataTypeDetailAction/saveUI.jsp"></forward>
+     <!-- editUI的id 和 redictUI的parentId 是同一个 -->
+       <forward name="redirctUI" path="/WEB-INF/jsp/VisaDataTypeDetailAction/redirctUI.jsp"></forward>
+       <forward name="copyTargetUI" path="/WEB-INF/jsp/VisaDataTypeDetailAction/copyTargetUI.jsp"></forward>
+       <forward name="copyTargetVisaProductUI" path="/WEB-INF/jsp/VisaDataTypeDetailAction/copyTargetVisaProductUI.jsp"></forward>
+		</action>
+		<action path="/background/VisaTypeAction" type="cn.jtgoo.cms.web.struts.action.VisaTypeAction" parameter="method" name="VisaTypeActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaTypeAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaTypeAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/VisaTypeAction.do?method=list" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/VisaTypeAction/saveUI.jsp"></forward>
+		</action>
+		<action path="/background/VisaLingquAction" type="cn.jtgoo.cms.web.struts.action.VisaLingquAction" parameter="method" name="VisaLingquActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaLingquAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaLingquAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/VisaLingquAction.do?method=list" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/VisaLingquAction/saveUI.jsp"></forward>
+		</action>
+		<action path="/background/PeerGroupAction" type="cn.jtgoo.cms.web.struts.action.PeerGroupAction" parameter="method" name="PeerGroupActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/PeerGroupAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/PeerGroupAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/PeerGroupAction.do?method=list" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/PeerGroupAction/saveUI.jsp"></forward>
+		</action>
+		<action path="/background/VisaCountryAction" type="cn.jtgoo.cms.web.struts.action.VisaCountryAction" parameter="method" name="VisaCountryActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaCountryAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaCountryAction/saveUI.jsp"></forward>
+	   <forward name="toList" path="/background/VisaCountryAction.do?method=list" redirect="true"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/VisaCountryAction/saveUI.jsp"></forward>
+		</action>
+		
+		<!-- 签证订单管理 -->
+		<action path="/background/VisaOrderAction" type="cn.jtgoo.cms.web.struts.action.VisaOrderAction" parameter="method" name="VisaOrderActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaOrderAction/list.jsp"></forward>
+		<forward name="interviewAppointmentList" path="/WEB-INF/jsp/VisaOrderAction/interviewAppointmentList.jsp"></forward>
+		<forward name="startTimeRemainList" path="/WEB-INF/jsp/VisaOrderAction/startTimeRemainList.jsp"></forward>
+		<forward name="appointmentDynamicTimeList" path="/WEB-INF/jsp/VisaOrderAction/appointmentDynamicTimeList.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaOrderAction/saveUI.jsp"></forward>
+	    <forward name="toList" path="/background/VisaOrderAction.do?method=list" redirect="true"></forward>
+        <forward name="editUI" path="/WEB-INF/jsp/VisaOrderAction/saveUI.jsp"></forward>
+        <forward name="uploadUI" path="/WEB-INF/jsp/VisaOrderAction/uploadUI.jsp"></forward>
+         <forward name="orderPDF" path="/WEB-INF/jsp/VisaOrderAction/orderPDF.jsp"></forward>
+         <forward name="splitOrderUI" path="/WEB-INF/jsp/VisaOrderAction/splitOrderUI.jsp"></forward>
+         <forward name="showVisaOrderInfo" path="/WEB-INF/jsp/VisaOrderAction/showVisaOrderInfo.jsp"></forward>
+		</action>
+		
+		
+		
+		
+			<!-- 签证产品管理 -->
+		<action path="/background/VisaProductAction" type="cn.jtgoo.cms.web.struts.action.VisaProductAction" parameter="method" name="VisaProductActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/VisaProductAction/list.jsp"></forward>
+		<forward name="toBookingFeeList" path="/background/VisaProductAction.do?method=bookingFeeList" redirect="true"></forward>
+		<forward name="bookingFeeList" path="/WEB-INF/jsp/VisaProductAction/bookingFeeList.jsp"></forward>
+		<forward name="bookingFeeEditUI" path="/WEB-INF/jsp/VisaProductAction/bookingFeeEditUI.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/VisaProductAction/saveUI.jsp"></forward>
+	    <forward name="toList" path="/background/VisaProductAction.do?method=list" redirect="true"></forward>
+        <forward name="editUI" path="/WEB-INF/jsp/VisaProductAction/saveUI.jsp"></forward>
+        <forward name="exportPDF1" path="/WEB-INF/jsp/VisaProductAction/exportPDF1.jsp"></forward>
+        <forward name="exportPDF2" path="/WEB-INF/jsp/VisaProductAction/exportPDF2.jsp"></forward>
+        <forward name="exportPDF3" path="/WEB-INF/jsp/VisaProductAction/exportPDF3.jsp"></forward>
+        <forward name="exportPDF4" path="/WEB-INF/jsp/VisaProductAction/exportPDF4.jsp"></forward>
+		</action>
+			<!-- 签证产品管理 -->
+		<action path="/background/AttachmentAction" type="cn.jtgoo.cms.web.struts.action.AttachmentAction" parameter="method" name="AttachmentActionForm" scope="request">
+		<forward name="list" path="/WEB-INF/jsp/AttachmentAction/list.jsp"></forward>
+		<forward name="listByVisaProductId" path="/WEB-INF/jsp/AttachmentAction/listByVisaProductId.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/AttachmentAction/saveUI.jsp"></forward>
+	    <forward name="toList" path="/background/AttachmentAction.do?method=list" redirect="true"></forward>
+	    <forward name="toDetailEditUI" path="/background/VisaDataTypeDetailAction.do?method=redirctUI" redirect="true"></forward>
+        <forward name="editUI" path="/WEB-INF/jsp/AttachmentAction/saveUI.jsp"></forward>
+        <forward name="addUI" path="/WEB-INF/jsp/AttachmentAction/addUI.jsp"></forward>
+        <forward name="selectProductUI" path="/WEB-INF/jsp/AttachmentAction/selectProductUI.jsp"></forward>
+		</action>
+		 
+		
+		<!-- 客户管理 -->
+		<action path="/background/CustomerAction" type="cn.jtgoo.cms.web.struts.action.CustomerAction" parameter="method" name="CustomerActionForm" scope="request">
+		 <forward name="peerUserList" path="/WEB-INF/jsp/PeerUserAction/peerUserList.jsp"></forward>
+		 <forward name="peerApply" path="/WEB-INF/jsp/PeerUserAction/peerApplyList.jsp"></forward>
+		<forward name="list" path="/WEB-INF/jsp/CustomerAction/list.jsp"></forward>
+        <forward name="customerUI" path="/WEB-INF/jsp/CustomerAction/customerUI.jsp"></forward>
+		<forward name="peerlist" path="/WEB-INF/jsp/CustomerAction/PeerList.jsp"></forward>
+		<forward name="directlist" path="/WEB-INF/jsp/CustomerAction/DirectList.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/CustomerAction/saveUI.jsp"></forward>
+		<forward name="PeerSaveUI" path="/WEB-INF/jsp/CustomerAction/PeerSaveUI.jsp"></forward>
+		<forward name="DirectSaveUI" path="/WEB-INF/jsp/CustomerAction/DirectSaveUI.jsp"></forward>
+	   <forward name="toPeerList" path="/background/CustomerAction.do?method=peerlist" redirect="true"></forward>
+	   <forward name="toDirectList" path="/background/CustomerAction.do?method=directlist" redirect="true"></forward>
+	   <forward name="toList" path="/background/CustomerAction.do?method=list" redirect="true"></forward>
+       <forward name="editPeerUI" path="/WEB-INF/jsp/CustomerAction/PeerSaveUI.jsp"></forward>
+       <forward name="editDirectUI" path="/WEB-INF/jsp/CustomerAction/DirectSaveUI.jsp"></forward>
+       <forward name="editUI" path="/WEB-INF/jsp/CustomerAction/saveUI.jsp"></forward>
+       <forward name="addCustomerUI" path="/WEB-INF/jsp/CustomerAction/addCustomerUI.jsp"></forward>
+       <forward name="editCustomerRelationUI" path="/WEB-INF/jsp/CustomerAction/editCustomerUI.jsp"></forward>
+       <forward name="showNameDetailInfo" path="/WEB-INF/jsp/CustomerAction/showCustomerNameDetailUI.jsp"></forward>
+       <forward name="showIdDetailInfo" path="/WEB-INF/jsp/CustomerAction/showCustomerIdDetailUI.jsp"></forward>
+       <forward name="showCustomerCompanyInfo" path="/WEB-INF/jsp/CustomerAction/showCustomerInfo.jsp"></forward>
+       <forward name="showCustomerInfo" path="/WEB-INF/jsp/CustomerAction/showCustomerInfo.jsp"></forward>
+       <forward name="updateVisaResultUI" path="/WEB-INF/jsp/CustomerAction/updateVisaResultUI.jsp"></forward>
+       <forward name="refusedVisaResultUI" path="/WEB-INF/jsp/CustomerAction/refusedVisaResultUI.jsp"></forward>
+       <forward name="refusedVisaResult" path="/background/CustomerAction.do?method=updateVisaResultUI" redirect="true"></forward>
+       <!-- 同行价格设置 -->
+       <forward name="peerPriceSetingVisaUI" path="/WEB-INF/jsp/CustomerAction/peerPriceSetingVisaUI.jsp"></forward>
+       <forward name="peerRelationSaveUI" path="/WEB-INF/jsp/CustomerAction/peerRelationSaveUI.jsp"></forward>
+		</action>
+       <!-- 预定管理设置 -->
+  
+		<action path="/background/ReserveOrderAction" type="cn.jtgoo.cms.web.struts.action.ReserveOrderAction" parameter="method" name="ReserveOrderActionForm" scope="request">
+   	    <forward name="list" path="/WEB-INF/jsp/ReserveOrderAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/ReserveOrderAction/saveUI.jsp"></forward>
+		 <forward name="toList" path="/background/ReserveOrderAction.do?method=list" redirect="true"></forward>
+		</action>
+		    <!-- 保险类型管理 -->
+		<action path="/background/InsuranceTypeAction" type="cn.jtgoo.cms.web.struts.action.InsuranceTypeAction" parameter="method" name="InsuranceTypeActionForm" scope="request">
+   	    <forward name="list" path="/WEB-INF/jsp/InsuranceTypeAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/InsuranceTypeAction/saveUI.jsp"></forward>
+		<forward name="editUI" path="/WEB-INF/jsp/InsuranceTypeAction/saveUI.jsp"></forward>
+		 <forward name="toList" path="/background/InsuranceTypeAction.do?method=list" redirect="true"></forward>
+		</action>
+		    <!-- 保险套餐管理 -->
+		<action path="/background/InsurancePackageAction" type="cn.jtgoo.cms.web.struts.action.InsurancePackageAction" parameter="method" name="InsurancePackageActionForm" scope="request">
+   	    <forward name="list" path="/WEB-INF/jsp/InsurancePackageAction/list.jsp"></forward>
+		<forward name="saveUI" path="/WEB-INF/jsp/InsurancePackageAction/saveUI.jsp"></forward>
+		<forward name="editUI" path="/WEB-INF/jsp/InsurancePackageAction/saveUI.jsp"></forward>
+	    <forward name="pdfview" path="/WEB-INF/jsp/InsurancePackageAction/pdfview.jsp"></forward>
+		 <forward name="toList" path="/background/InsurancePackageAction.do?method=list" redirect="true"></forward>
+		</action>
+
+</action-mappings>
+		<message-resources parameter="cn.jtgoo.cms.web.struts.ApplicationResources"/>
+</struts-config>

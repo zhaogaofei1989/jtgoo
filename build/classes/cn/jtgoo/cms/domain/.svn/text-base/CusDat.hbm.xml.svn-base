@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="CusDat" table="jtgoo_cus_dat">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="customerId" type="long"></property>
+		<property name="datatypeDetailId" type="long"></property>
+		<property name="visaProductId" type="long"></property>
+		<property name="visaorderId" type="long"></property>
+		<property name="copy" type="string"></property>
+		<property name="original" type="string"></property>
+		<property name="remarks" type="string"></property>
+		<property name="visastatus" type="string"></property>
+		<property name="status" type="string"></property>
+		<property name="customerName" type="string"></property>
+		<property name="datatypeName" type="string"></property>
+		<property name="datatypedetailTitle" type="string"></property>
+		<property name="reason" type="string" column="reason"></property>
+		<property name="analysis" type="string" column="analysis"></property>
+		<property name="results" type="string" column="results"></property>
+	</class>
+</hibernate-mapping>
+
+
+

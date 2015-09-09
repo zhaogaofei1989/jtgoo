@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="VisaProduct" table="jtgoo_visaproduct">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="name"></property>
+		<property name="serialNumber" type="string" column="serialNumber"></property>
+		<property name="isInterview" type="string" column="isInterview"></property>
+		<property name="isNeedToAppointment" type="string" column="isNeedToAppointment"></property>
+		<property name="visaApplyCycle" type="string" column="visaApplyCycle"></property>
+		<property name="visaValid" type="string" column="visaValid"></property>
+		<property name="periodOfStay" type="string" column="periodOfStay"></property>
+		<property name="scopeOfAcceptance" type="string" column="scopeOfAcceptance"></property>
+		<property name="nationalFlag" type="string" column="nationalFlag"></property>
+
+		<property name="priceDesc" type="string" column="priceDesc"></property>
+		<property name="visaRemarks" type="string" length="2000" column="visaRemarks"></property>
+		<property name="visaMaterials" type="string"  length="2000" column="visaMaterials"></property>
+		<property name="submitApplicationAndInterview" type="text" column="submitApplicationAndInterview"></property>
+		<property name="lingquDivide" type="text" column="lingquDivide"></property>
+		<property name="bookingInterview" type="text" column="bookingInterview"></property>
+		<property name="visaQueryAndReceive" type="text" column="visaQueryAndReceive"></property>
+		<property name="acceptType" type="string" column="acceptType"></property>
+		<property name="quotationHasVisaPrice" type="string" column="quotationHasVisaPrice"></property>
+		<property name="oneToManySelect" type="string" column="oneToManySelect"></property>
+		<property name="webSiteLink" type="text" column="webSiteLink"></property>
+		<property name="bookingInformationNeeds" type="string" length="2000"  column="bookingInformationNeeds"></property>
+		<property name="consularAndVisaCenterAddress" type="string" length="2000"  column="consularAndVisaCenterAddress"></property>
+		<property name="howToQueryVisaInfo" type="text" column="howToQueryVisaInfo"></property>
+		<property name="getVisaInfo" type="text" column="getVisaInfo"></property>
+		<property name="disclaimer" type="text" column="disclaimer"></property>
+		<property name="updateTime" type="string" column="updateTime"></property>
+		<property name="del_status" type="string" column="del_status" length="1"></property>
+		<property name="icon" type="string" column="icon"></property>
+		<!-- 签证费 预约费 -->
+	
+		<property name="serviceFee1" type="double" column="serviceFee1"></property>
+		<property name="visaFee" type="double" column="visaFee"></property>
+		<property name="visaFee1" type="double" column="visaFee1"></property>
+		<property name="visaFee2" type="double" column="visaFee2"></property>
+		<property name="bookFee" type="double" column="bookFee"></property>
+		<property name="bookFee1" type="double" column="bookFee1"></property>
+		<property name="bookFee2" type="double" column="bookFee2"></property>
+			<!-- 订单和签证类型是多对一的关系 -->
+	   <many-to-one name="type" class="VisaType" column="visaTypeId"></many-to-one>
+		<!-- 订单和国家是多对一的关系 -->
+	   <many-to-one name="country" class="Country"  column="countryId"></many-to-one>
+		<!-- 订单和领区是多对一的关系 -->
+	   <many-to-one name="lingqu" class="Lingqu"  column="lingquId" lazy="false"></many-to-one>
+	 
+	 <!-- 签证产品和保险饱餐是多对一的关系 -->
+	   <many-to-one name="insurancePackage" class="InsurancePackage"  column="insurancePackageId" lazy="false"></many-to-one>
+	   		<!-- 订单和领区是多对一的关系 -->
+	   		  <set name="visaOrderSet">
+        	<key column="visaProductId"></key>
+        	<one-to-many class="VisaOrder"/>
+        </set>
+        
+         <set name="dataTypeDetailSet" cascade="delete" order-by="id ASC" lazy="true">
+        	<key column="visaProductId"></key>
+        	<one-to-many class="DataTypeDetail"/>
+        </set>
+        
+        
+        <set name="customerSet" table="jtgoo_cus_product" inverse="true" lazy="true">
+        	<key column="visaproductId"></key>
+        	<many-to-many class="Customer" column="customerId"></many-to-many>
+        </set>
+        
+        
+        
+               <set name="attachmentSet" table="jtgoo_attachment_product">
+        	<key column="attachmentId"></key>
+        	<many-to-many class="Attachment" column="productId"></many-to-many>
+        </set>
+		
+	</class>
+
+</hibernate-mapping>
+
+
+

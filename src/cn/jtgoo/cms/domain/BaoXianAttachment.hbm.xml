@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="BaoXianAttachment" table="jtgoo_baoxian_attachment">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="name"></property>
+		<property name="size" type="string" column="size"></property>
+		<property name="path" type="string" column="path"></property>
+		<property name="uploadTime" type="string" column="uploadTime"></property>
+	</class>
+</hibernate-mapping>
+
+
+

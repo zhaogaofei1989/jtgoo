@@ -1,0 +1,82 @@
+package cn.jtgoo.cms.service.impl;
+
+import java.util.List;
+
+import org.hibernate.Query;
+
+import cn.jtgoo.cms.base.BaseDaoImpl;
+import cn.jtgoo.cms.domain.Lingqu;
+import cn.jtgoo.cms.domain.Resource;
+import cn.jtgoo.cms.domain.User;
+import cn.jtgoo.cms.param.Delstatus;
+import cn.jtgoo.cms.param.Param;
+import cn.jtgoo.cms.service.VisaLingquService;
+@SuppressWarnings("unchecked")
+public class VisaLingquServiceImpl extends BaseDaoImpl<Lingqu> implements VisaLingquService {
+
+	public Lingqu findByName(String name) {
+		return (Lingqu) getSession().createQuery("FROM Lingqu c WHERE c.name='"+name+"'").uniqueResult();
+	}
+
+	public List<Lingqu> findAllByUser(List list) {
+		if(list!=null&&list.size()>0)
+		{
+			String hql="FROM Lingqu c WHERE c.id IN (:alist)";  
+			Query query = getSession().createQuery(hql);  
+			query.setParameterList("alist", list);  
+	    	return query.list();
+		}
+		return null;
+	}
+	public void save(Lingqu entity) {
+			/**
+			 * 保存领区保存后在资源表中添加一个url
+			 */
+
+		 getSession().save(entity);
+	   
+		/**
+		 * 查询预约面试提醒的跟
+		 */
+	      List<Resource> rList= getSession().createQuery("from Resource r where r.name in (?,?,?) ")
+	      .setParameter(0, Param.R1)
+	      .setParameter(1, Param.R2)
+	      .setParameter(2, Param.R3).list();
+	       if(rList!=null)
+	       {
+			
+	        for(Resource r:rList)
+	        {
+	        	if(r.getName().indexOf(Param.R1)>-1)
+	        	{ Resource resource=new Resource();
+	        		resource.setName(entity.getName());
+	        		resource.setParent(r);
+	        		resource.setUrl(Param.lingquUrl_R1+entity.getId());
+	      	        getSession().save(resource);
+	        	}
+	        	else 	if(r.getName().indexOf(Param.R2)>-1)
+	        	{   Resource resource=new Resource();
+        		     resource.setName(entity.getName());
+	        		resource.setParent(r);
+	                resource.setUrl(Param.lingquUrl_R2+entity.getId());
+	                getSession().save(resource);
+	        	}
+	        	else if(r.getName().indexOf(Param.R3)>-1)
+	        	{   Resource resource=new Resource();
+        	        resource.setName(entity.getName());
+	        		resource.setParent(r);
+	        	     resource.setUrl(Param.lingquUrl_R3+entity.getId());
+	        	     getSession().save(resource);
+	        	     getSession().flush();
+	        	}
+	        }
+
+	       }
+		}
+	public void delete(Long id) {
+		Lingqu lingqu = (Lingqu) getSession().get(Lingqu.class, id);
+		lingqu.setDel_status(String.valueOf(Delstatus.DELETE.ordinal()));
+		getSession().flush();
+	}
+
+}

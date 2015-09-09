@@ -1,0 +1,119 @@
+package cn.jtgoo.cms.web.struts.action;
+
+import java.util.Collection;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import cn.jtgoo.cms.base.BaseAction;
+import cn.jtgoo.cms.domain.Department;
+import cn.jtgoo.cms.util.DepartmentUtils;
+import cn.jtgoo.cms.web.struts.formbean.DepartmentActionForm;
+
+public class DepartmentAction extends BaseAction {
+
+	/** 列表，只显示一层的（同级的）部门数据，默认显示最顶级的部门列表 */
+	public ActionForward list(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String parentIdStr = request.getParameter("parentId");
+		Collection<Department> departmentList = null;
+		// 如果有 parentId 参数，就是查询子部门，否则就是查看顶级部门
+		if (parentIdStr == null || parentIdStr.trim().length() == 0) { // 顶级部门列表
+			departmentList = departmentService.findTopLevel();
+		} else { // 子部门列表
+			Long parentId = Long.parseLong(parentIdStr);
+
+			Department parent = departmentService.getById(parentId);
+			departmentList = parent.getChildren();
+			request.setAttribute("parent", parent);
+		}
+		request.setAttribute("departmentList", departmentList);
+		return mapping.findForward("list");
+	}
+
+	/** 删除，会删除此部门的所有下级部门 */
+	public ActionForward delete(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Long id = Long.parseLong(request.getParameter("id"));
+		departmentService.delete(id);
+
+		String parentId = request.getParameter("parentId");
+		ActionForward af = mapping.findForward("toList");
+		return new ActionForward(af.getPath() + "&parentId=" + parentId, af.getRedirect());
+	}
+
+	/** 添加页面 */
+	public ActionForward addUI(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 显示部门的树状列表
+		List<Department> topList = departmentService.findTopLevel();
+		List<Department> departmentList = DepartmentUtils.getAllDepartmentList(topList);
+
+		request.setAttribute("departmentList", departmentList);
+		return mapping.findForward("saveUI");
+	}
+
+	/** 添加 */
+	public ActionForward add(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 1, actionForm --> new Department()
+		DepartmentActionForm actionForm = (DepartmentActionForm) form;
+		Department department = new Department();
+
+		Department parent = departmentService.getById(actionForm.getParentId());
+		department.setName(actionForm.getName());
+		department.setDescription(actionForm.getDescription());
+		department.setParent(parent);
+
+		// 2, service.save()
+		departmentService.save(department);
+
+		// 3, return
+		String parentId = request.getParameter("parentId");
+		ActionForward af = mapping.findForward("toList");
+		return new ActionForward(af.getPath() + "&parentId=" + parentId, af.getRedirect());
+	}
+
+	/** 修改页面 */
+	public ActionForward editUI(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		DepartmentActionForm actionForm = (DepartmentActionForm) form;
+		Department department = departmentService.getById(actionForm.getId());
+
+		// 显示部门的树状列表
+		List<Department> topList = departmentService.findTopLevel();
+		List<Department> departmentList = DepartmentUtils.getAllDepartmentList(topList);
+		// 从集合中移除当前修改的部门及其子孙部门
+		DepartmentUtils.removeDeparmentAndChildren(departmentList, department);
+		request.setAttribute("departmentList", departmentList);
+
+		// 准备 ActionForm
+		actionForm.setName(department.getName());
+		actionForm.setDescription(department.getDescription());
+		if (department.getParent() != null) {
+			actionForm.setParentId(department.getParent().getId());
+		}
+		return mapping.findForward("saveUI");
+	}
+
+	/** 修改 */
+	public ActionForward edit(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 1, actionForm --> getById()
+		DepartmentActionForm actionForm = (DepartmentActionForm) form;
+		Department department = departmentService.getById(actionForm.getId());
+
+		Department parent = departmentService.getById(actionForm.getParentId());
+		department.setName(actionForm.getName());
+		department.setDescription(actionForm.getDescription());
+		department.setParent(parent);
+
+		// 2, service.update()
+		departmentService.update(department);
+
+		// 3, return
+		String parentId = request.getParameter("parentId");
+		ActionForward af = mapping.findForward("toList");
+		return new ActionForward(af.getPath() + "&parentId=" + parentId, af.getRedirect());
+	}
+
+}

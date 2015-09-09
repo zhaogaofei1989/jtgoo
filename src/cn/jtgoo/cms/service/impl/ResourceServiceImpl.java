@@ -1,0 +1,33 @@
+package cn.jtgoo.cms.service.impl;
+
+import java.util.List;
+
+import cn.jtgoo.cms.base.BaseDaoImpl;
+import cn.jtgoo.cms.domain.Resource;
+import cn.jtgoo.cms.service.ResourceService;
+
+public class ResourceServiceImpl extends BaseDaoImpl<Resource> implements ResourceService {
+
+	@SuppressWarnings("unchecked")
+	public List<Resource> findTopLevel() {
+		return getSession().createQuery(//
+				"FROM Resource r WHERE r.parent IS NULL order by level desc")//
+				.list();
+	}
+
+	@Override
+	public List<Resource> findAll() {
+		return getSession().createQuery(//
+		"FROM Resource r  order by level desc")//
+		.list();
+	}
+
+	@Override
+	public List<Resource> findAllByType(String type) {
+		return getSession().createQuery(//
+		"FROM Resource r WHERE r.type=?").setParameter(0, type)//
+		.list();
+	}
+
+	
+}

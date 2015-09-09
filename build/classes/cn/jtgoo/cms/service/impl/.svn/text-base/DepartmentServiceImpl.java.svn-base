@@ -1,0 +1,26 @@
+package cn.jtgoo.cms.service.impl;
+
+import java.util.List;
+
+import cn.jtgoo.cms.base.BaseDaoImpl;
+import cn.jtgoo.cms.domain.Department;
+import cn.jtgoo.cms.domain.User;
+import cn.jtgoo.cms.param.Delstatus;
+import cn.jtgoo.cms.service.DepartmentService;
+
+public class DepartmentServiceImpl extends BaseDaoImpl<Department> implements DepartmentService {
+
+	@SuppressWarnings("unchecked")
+	public List<Department> findTopLevel() {
+		return getSession().createQuery(//
+				"FROM Department d WHERE d.parent IS NULL")//
+				.list();
+	}
+	public void delete(Long id) {
+		User user = (User) getSession().get(User.class, id);
+		user.setDel_status(String.valueOf(Delstatus.DELETE.ordinal()));
+		getSession().flush();
+	}
+
+	
+}

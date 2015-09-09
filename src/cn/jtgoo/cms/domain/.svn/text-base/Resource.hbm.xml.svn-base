@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+    <class name="Resource" table="jtgoo_resource">
+        <id name="id">
+            <generator class="native"/> 
+        </id>
+        <property name="name"></property>
+        <property name="url"></property>
+        <property name="icon"></property>
+        <property name="level"></property>
+        <!-- 用于标示菜单类型，1代表后台系统，2代表分销系统 -->
+        <property name="type" column="type" length="1" type="string"></property>
+        
+        <!-- roles, 我与Role的多对多 -->
+        <set name="roles" table="jtgoo_role_resource" inverse="true">
+        	<key column="resourceId"></key>
+        	<many-to-many class="Role" column="roleId"></many-to-many>
+        </set>
+        	
+        <!-- parent, 我与Resource（上级）的多对一 -->
+        <many-to-one name="parent" class="Resource" column="parentId"></many-to-one>
+        
+        <!-- children, 我与Resource（下级）的一对多 
+        	order-by属性用于指定生成的sql语句的order子句
+        -->
+        <set name="children" order-by="id ASC">
+        	<key column="parentId"></key>
+        	<one-to-many class="Resource"/>
+        </set>
+        
+	</class>
+	
+</hibernate-mapping>
+
+
+

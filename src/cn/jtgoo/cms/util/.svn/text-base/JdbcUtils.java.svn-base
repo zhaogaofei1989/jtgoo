@@ -1,0 +1,113 @@
+package cn.jtgoo.cms.util;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+import cn.jtgoo.cms.domain.ReserveOrder;
+
+public class JdbcUtils {
+	
+	private static String driver;
+	private static String url;
+	private static String username;
+	private static String password;
+	
+	static{
+		try {
+			InputStream in = JdbcUtils.class.getClassLoader().getResourceAsStream("default.properties");
+			Properties prop = new Properties();
+			prop.load(in);
+			driver = prop.getProperty("driver");
+			url = prop.getProperty("url");
+			username = prop.getProperty("username");
+			password = prop.getProperty("password");
+			Class.forName(driver);
+		} catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
+	}
+	
+	//获取链接
+	public static Connection getConnection() throws SQLException{
+		Connection conn = DriverManager.getConnection(url,username,password);
+		return conn;
+	}
+	
+	/**
+	 * @param name
+	 * @param dataTypeDetailId
+	 * @param path
+	 * @return
+	 * @throws SQLException
+	 */
+	public static int addAttment(String name,String path) throws SQLException {
+		int id=0;
+		Statement stm = null;
+	    Connection conn = getConnection();
+	    ResultSet rs =null;
+		String sql = "insert into jtgoo_attachment(name,path,uploadTime) values('"+name+"','"+path+"','"+NumberFormatTools.getCurrentTime()+"')";
+		stm = conn.prepareStatement(sql);
+		int row=stm.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);
+		  rs = stm.getGeneratedKeys ();  
+		     if ( rs.next() ) {  
+		        int key = rs.getInt(row);  
+		        id=key;
+		     }  
+		     JdbcUtils.release(rs, stm, conn);
+		     return id; 
+	}
+	
+	
+	public static int addReserveOrder(ReserveOrder order) throws SQLException {
+		int id=0;
+		Statement stm = null;
+	    Connection conn = getConnection();
+	    ResultSet rs =null; 
+		String sql = "insert into jtgoo_reserve_order(number_of_people1,number_of_people2,order_price,customer_name,mobile_phone,mail,remark,city,product_name,product_id,register_time) values('"+order.getNumber_of_people1()+"','"+order.getNumber_of_people2()
+		+"','"+order.getOrder_price()+"','"+order.getCustomer_name()+"','"+order.getMobile_phone()+"','"+order.getMail()+"','"+order.getRemark()
+		+"','"+order.getCity()+"','"+order.getProduct_name()+"','"+order.getProduct_id()
+		+"','"+NumberFormatTools.getCurrentTime()+"')";
+		System.out.println(sql);
+		stm = conn.prepareStatement(sql);
+		int row=stm.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);
+		  rs = stm.getGeneratedKeys ();  
+		     if ( rs.next() ) {  
+		        int key = rs.getInt(row);  
+		        id=key;
+		     }  
+		     JdbcUtils.release(rs, stm, conn);
+		     return id; 
+	}
+	public static void release(ResultSet rs,Statement st,Connection conn){
+		if(rs!=null){
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} 
+			rs = null;
+		}
+		if(st!=null){
+			try {
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			st = null;
+		}
+		if(conn!=null){
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			conn = null;
+		}
+	}
+	
+}

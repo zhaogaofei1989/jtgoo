@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service
+END
+UserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jtgoo/!svn/ver/64/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/UserService.java
+END
+VisaDataTypeDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaDataTypeDetailService.java
+END
+VisaLingquService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaLingquService.java
+END
+VisaCountryService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaCountryService.java
+END
+ResourceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jtgoo/!svn/ver/64/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/ResourceService.java
+END
+CustomerServicersService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/CustomerServicersService.java
+END
+AttachmentService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/AttachmentService.java
+END
+VisaOrderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaOrderService.java
+END
+VisaDataTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaDataTypeService.java
+END
+RoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/RoleService.java
+END
+CustomerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jtgoo/!svn/ver/64/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/CustomerService.java
+END
+VisaProductService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jtgoo/!svn/ver/50/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaProductService.java
+END
+DepartmentService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/DepartmentService.java
+END
+VisaTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/VisaTypeService.java
+END
+ReserveOrderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/57/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/ReserveOrderService.java
+END
+PeerGroupService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/service/PeerGroupService.java
+END

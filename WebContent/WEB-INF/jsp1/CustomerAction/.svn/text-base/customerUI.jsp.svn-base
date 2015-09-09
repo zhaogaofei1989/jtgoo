@@ -1,0 +1,110 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<html>
+<head>
+<%@ include file="/WEB-INF/jsp/Public/commons.jspf" %>
+<script type="text/javascript" src="${basePath}/js/artdialog/artDialog.js?skin=blue"></script>
+<script type="text/javascript" src="${basePath}/js/artdialog/iframeTools.js"></script>
+<script type="text/javascript">
+function add()
+{
+var visaProductId=art.dialog.data('visaProductId');
+var visaorderId=art.dialog.data('visaorderId');
+window.location.href='CustomerAction.do?method=addCustomerUI&visaProductId='+visaProductId+'&visaorderId='+visaorderId;
+/**art.dialog.open('CustomerAction.do?method=addCustomerUI&visaProductId='+visaProductId,
+ {  title: '添加客户资料',
+    width: 800,
+    height: 300,
+    left: '50%',
+    top: '3%',
+    lock:true});
+
+var pp=this.top;
+pp.close();
+var p=artDialog.top;
+
+var myDialog = art.dialog();// 初始化一个带有loading图标的空对话框
+jQuery.ajax({
+    url: 'CustomerAction.do?method=addCustomerUI',
+    success: function (data) {
+        myDialog.content(data);// 填充对话框内容
+    }
+});
+art.dialog.open('VisaOrderAction.do?method=addCustomerUI',
+{
+    title: '添加资料清单',
+    width: 800,
+    height: 240,
+    left: '50%',
+    top: '10%',
+    ok: function()
+    {
+ 
+  this.parent().close();
+   alert("1111");
+    },
+    cancel: function()
+    {
+    this.close();
+    }
+});**/
+}
+
+</script>
+</head>
+<body>
+<div>
+<div class="top">
+<select>
+<option value="dataName">资料名称</option>
+</select>
+&nbsp;<input type="text"  style="width:80px;"/>
+<select>
+<option value="0" selected="selected">选择客户</option>
+<c:forEach items="${cusDatList}" var="cusDat">
+<option value="${cusDat.customerId}">${cusDat.customerName}</option>
+</c:forEach>
+</select>
+<input type="button" value="搜索"/>
+<input type="button" value="添加新客户资料" onclick="add()"/>
+</div>
+<table cellspacing="0" cellpadding="0" class="TableStyle">
+
+<!-- 表头-->
+        <thead>
+            <tr align="CENTER" valign="MIDDLE" id="TableTitle">
+            	<td>客户姓名</td>
+                <td>职业</td>
+                <td>资料类别</td>
+                <td>资料名称</td>
+                <td>原件</td>
+                <td>复印件</td>
+                <td>备注</td>
+                <td>相关操作</td>
+            </tr>
+        </thead>
+        <tbody id="TableData" class="dataContainer">
+        <c:forEach items="${cusDatList}" var="cusDat">
+        <tr>
+        <td>${cusDat.customerName }</td>
+        <td>在职人员</td>
+        <td>${cusDat.datatypedetailTitle }</td>
+        <td>${cusDat.datatypeName }</td>
+        <td>${cusDat.original }</td>
+        <td>${cusDat.copy}</td>
+         <td>${cusDat.remarks }</td>
+      <td>
+		<html:link action="/CustomerAction?method=editCustomerRelationUI&id=${cusDat.id}&visaProductId=${cusDat.visaProductId}&customerId=${cusDat.customerId}&visaorderId=${visaorderId}">修改</html:link>
+		<html:link action="/CustomerAction?method=removeCustomerRelation&id=${cusDat.id}&visaProductId=${cusDat.visaProductId}&visaorderId=${visaorderId}" onclick="return delConfirm()">删除</html:link>
+		</td>
+        </tr>
+        </c:forEach>
+     
+       
+        </tbody>
+</table>
+
+
+
+</div>
+</body>
+</html>

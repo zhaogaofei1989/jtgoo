@@ -1,0 +1,75 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<html>
+<head>
+<title>jtgoo</title>
+<%@ include file="../Public/commons.jspf" %>
+<link rel="stylesheet" type="text/css" href="${basePath}/static/layout/style.css"/>
+<script type="text/javascript">
+window.onresize = window.onload = function(){
+var w,h
+if(!!(window.attachEvent && !window.opera))
+{
+h = document.documentElement.clientHeight;
+w = document.documentElement.clientWidth;
+}else{
+h =	window.innerHeight;
+w = window.innerWidth;
+}
+document.getElementById('msg').value  ='çªå£å¤§å°ï¼' + 'width:' + w + '; height:'+h;
+var bgImg = document.getElementById('bg').getElementsByTagName('img')[0];
+bgImg.width = (w - 5);
+bgImg.height= (h-5) ;	
+
+}	
+</script>
+</head>
+
+<body>
+<div class="login-ty">
+    <div id="bg"><img src="${basePath}/static/images/bg.gif" width="1106" height="739" /></div>
+    <input type="text" id="msg" name="msg" size="50" style="display:none"/>
+    <div class="ty-SiteNav">
+    	<div class="ty-SiteNavBd">
+        	<ul>
+        		<li class="ty-logo"><img src="${basePath}/static/layout/images/ty-logo.png" width="189" height="58" /></li>
+                
+                <li class="ty-icon"><img src="${basePath}/static/layout/images/ty-QQ.gif" width="94" height="24" /></li>
+        	</ul>
+        </div>	
+      <div class="ty-SiteNavBg"></div>
+    </div>
+  <div class="ty-loginArea">
+  <form action="/jtgooCMS/CustomerAction.do">
+  <input type="hidden" name="method" value="login" />
+  <input type="hidden" name="type" value="2" />
+        <table width="268" border="1" class="ty-tab">
+        		<tr>
+                		<td colspan="2"><!-- 显示错误 -->
+							<font color="red"><html:errors/></font>
+                		</td>
+                	</tr>
+            <tr>
+                <td style="text-align:right">用户名</td>
+                <td><input id="userName" name="userName" type="text" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">密码</td>
+                <td><input id="passwd" name="passwd" type="password" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right">验证码</td>
+                <td><input type="" /></td>
+              </tr>
+            <tr>
+            	<td></td>
+                <td style="text-align:center"><img src="${basePath}/static/layout/images/yzm.png" width="83" height="24" /></td>
+            </tr>
+        </table>
+        <input type="submit"/>
+        </form>
+        <div class="ty-btn">登录</div>
+        <div class="loginArea-bottom"><a href="">同业登录</a><span>|</span><a href="">同业注册</a></div>
+   </div>
+</div>
+</body>
+</html>

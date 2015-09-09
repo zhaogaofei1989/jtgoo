@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="config"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_06">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -13,5 +14,59 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/c3p0-0.9.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-email-1.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-core-2.4.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient-4.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-0.9.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/proxool-cglib.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.6.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-asm-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aspects-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-modules-cache.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-transaction-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-servlet-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xstream-1.4.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/asm.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/asm-attrs.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/cglib-2.1.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/hibernate3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/jta.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/Hibernate/log4j-1.2.11.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/fastjson-1.1.13.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/javax.ws.rs.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.json.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.jaxb.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.jaxrs.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.json.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.servlet.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.spring.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.ext.xml.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/rest/org.restlet.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

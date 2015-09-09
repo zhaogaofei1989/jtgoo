@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="DataTypeDetail" table="jtgoo_datatypedetail">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="sort" type="integer" column="sort"></property>
+		<property name="type" type="string" column="type"></property>
+		<property name="sign" type="string" column="sign"></property>
+		<property name="title" type="string" column="title"></property>
+		<property name="status" type="string" column="status"></property>
+		<property name="content" type="text" column="content"></property>
+		<property name="del_status" type="string" column="del_status" length="1"></property>	
+  <!-- dataTypeDetailSet, 我与DataTypeDetail的多对多 -->
+     
+			<!--资料详情和资料类型是多对一的关系 -->
+		<many-to-one name="dataType" class="DataType" column="dataTypeId" lazy="false"></many-to-one>
+			<!--资料详情和签证产品是多对一的关系 -->
+		<many-to-one name="visaProduct" class="VisaProduct" column="visaProductId"></many-to-one>
+	</class>
+</hibernate-mapping>
+
+
+

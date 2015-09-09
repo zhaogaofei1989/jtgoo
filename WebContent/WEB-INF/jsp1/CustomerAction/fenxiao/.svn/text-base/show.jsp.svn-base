@@ -1,0 +1,281 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	request.setAttribute("basePath",  basePath);
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>同业系统</title>
+<link rel="stylesheet" type="text/css" href="http://toplife.gotoip55.com/statics/css/css/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="http://toplife.gotoip55.com/statics/css/css/css/DistributionSystemPage.css"/>
+<script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/member_common.js"></script>
+<script language="javascript" src="http://toplife.gotoip55.com/statics/js//js/js/base.js"></script>
+<link href="http://toplife.gotoip55.com/statics/css//dialog_simp.css" rel="stylesheet" type="text/css" />
+<script src="http://toplife.gotoip55.com/statics/js//dialog.js" type="text/javascript"></script>
+
+		<script>
+
+function announce(id, name) {
+	window.top.art.dialog({id:'send_email'}).close();
+	window.top.art.dialog({yesText:'关闭',title:name,id:'send_email',iframe:'index.php?m=announce&c=index&a=show&aid='+id,width:'600',height:'320'}, function(){window.top.art.dialog({id:'send_email'}).close()});
+	
+}
+
+</script>
+<style>
+	#LoginStatus li a { padding-left:2px;}
+	#Status { padding-bottom:0px;}
+	
+</style>
+</head>
+<body>
+<div id="Banner">
+    <div>
+            <img  src="http://toplife.gotoip55.com/statics/css/css/image/distribution.jpg" />
+			<font></font>
+            <span>
+             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2::41" ></a>            </span>
+        </div>
+    </div>
+	
+	
+	<div id="header">
+        <div id="Status">
+            <a href="http://toplife.gotoip55.com/" id="Logos"><img src="http://toplife.gotoip55.com/uploadfile/2012/0914/20120914124412554.jpg" /></a>
+            <ul id="LoginStatus">
+                <li>
+                    <span><b>${customer.serialNumber }! </b>欢迎${ customer.userName}到同业分销系统</span>
+                    <span>你的身份是<b>同业用户</b></span>       
+                    <a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=logout&forward=http%3A%2F%2Ftoplife.gotoip55.com%2Flogin_ty.html&siteid=">退出登录</a>
+                <A href="http://toplife.gotoip55.com/index.php?m=member&c=index">同业系统首页</A>
+                    <a href="http://toplife.gotoip55.com/">网站主页</a>
+                </li>
+				                <li>
+                最新签证订单：未审核<strong><A href="index.php?m=member&c=index&a=visaorder&status=0">0</A></strong>个，已确认<strong><A href="index.php?m=member&c=index&a=visaorder&status=1">0</A></strong>个，正在处理中<strong><A href="index.php?m=member&c=index&a=visaorder&status=2">0</A></strong>个;
+               
+                   最新线路订单：未审核<strong><A href="index.php?m=member&c=index&a=triporder&status=0">0</A></strong>个，已确认<strong><A href="index.php?m=member&c=index&a=triporder&status=1">0</A></strong>个，已付款<strong><A href="index.php?m=member&c=index&a=triporder&status=2">0</A></strong>个，处理中<strong><A href="index.php?m=member&c=index&a=triporder&status=3">0</A></strong>个;
+                </li>
+            </ul>
+        </div>
+    </div>
+	
+		 <div id="content">
+	 <dl id="broadCast">
+	 								        	<dt>
+			<span><A href="javascript:announce('46','持有美国签证可免签入境国')">持有美国签证可免签入境国</A></span>
+			<font><a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=announcelist">[更多公告...]</a></font>
+			</dt>
+			            <dd><span><a href="http://toplife.gotoip55.com/index.php?m=message&c=index&a=send" ></a></span><font><a href="http://toplife.gotoip55.com/index.php?m=message&c=index&a=send">[更多通知...]</a></font></dd>
+    	</dl>
+		
+		<div class="ThreeColumnEqualAltitude"><script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/member_common.js"></script>
+<script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/formvalidatorregex.js" charset="UTF-8"></script>
+<link href="http://toplife.gotoip55.com/statics/css/table_form.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="http://toplife.gotoip55.com/statics/css//css/css/MembershipCenterPage.css"/>
+<style>
+	#Leftbar dt,#Leftbar dd a { font-family:simhei; font-size:14px;}
+	#Leftbar dt { cursor:pointer;}
+</style>
+
+<div class="Left">
+            	<dl id="Leftbar">
+                	<dt>-签证服务-</dt>
+                    <dd>
+                    	<a href="http://toplife.gotoip55.com/visalists-8-1.html" >签证产品预订</a>
+                    	 <p><a href="CustomerAction.do?method=customerOrderList&status=9" > 未审核订单(0)</a></p>
+						<p><a href="CustomerAction.do?method=customerOrderList&status=7" > 已确认订单(0)</a></p>
+						<p><a href="CustomerAction.do?method=customerOrderList&status=2" > 正在处理中(0)</a></p>
+						<p><a href="CustomerAction.do?method=customerOrderList&status=3" > 已完成(34)</a></p>
+                    </dd>
+                	<dt>-旅游线路-</dt>
+                    <dd>
+                    	<a href="http://toplife.gotoip55.com/triplists-13-3404-1.html?destination=0&pagesize=10" >旅游线路产品预订</a>
+						
+                    	<p><a href="index.html" > 未确认订单(0)</a></p>
+						<p><a href="index.php?m=member&c=index&a=triporder&status=1" > 已确认订单(0)</a></p>
+						<p><a href="index.php?m=member&c=index&a=triporder&status=2" > 已付款订单(0)</a></p>
+						<p><a href="index.php?m=member&c=index&a=triporder&status=3" > 处理中订单(0)</a></p>
+						<p><a href="index.php?m=member&c=index&a=triporder&status=4" > 已完成订单(0)</a></p>
+						<p><a href="index.php?m=member&c=index&a=triporder&status=5" > 取消订单(0)</a></p>
+                    </dd>
+                	
+                	<dt>-我的资料-</dt>
+                    <dd>
+                    	<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=account_manage_info" >查看资料</a>
+                    	<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=account_manage_password&t=1"  >修改密码</a>
+                    	<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=account_manage_avatar&t=1"  >修改头像</a>
+						<a href="http://toplife.gotoip55.com/index.php?m=member&c=content&a=kflist" >客服管理</a>
+                    	
+                    </dd>
+					
+					<dt>-通知回复-</dt>
+                    <dd>
+                    	<p><a href="http://toplife.gotoip55.com/index.php?m=message&c=index&a=send" >通知回复管理</a></p>
+						<!--<p><a href="http://toplife.gotoip55.com/index.php?m=message&c=index&a=inbox" >收件箱(0)</a></p>
+						<p><A href="http://toplife.gotoip55.com/index.php?m=message&c=index&a=outbox" >发件箱(0)</A></p>-->
+                    </dd>
+					<dt>-网站公告-</dt>
+					 <dd>
+                    
+
+</p>     
+          
+<p><A href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=announcelist">公告列表（35）</A></p>
+                    </dd>
+					
+                	<dt>-联系方式-</dt>
+                    <dd style=" padding:5px;">
+					<!--<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=viewlxfs&code=lxfs_sh&lxfsname=%E4%B8%8A%E6%B5%B7">上海</a>
+					<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=viewlxfs&code=lxfs_bj&lxfsname=%E5%8C%97%E4%BA%AC">北京</a>
+                    <a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=viewlxfs&code=lxfs_tyfx&lxfsname=%E5%90%8C%E4%B8%9A%E5%88%86%E9%94%80">同业分销</a>-->
+					   
+					         
+                    </dd>
+                </dl>
+                
+
+            </div>
+<div class="BigRight">
+            	<form action="" id="myform" name="myform" method="get">
+            	<div id="UntreatedOrder">
+            	<h1>
+            	<span>
+            	正在处理的订单
+            	</span>
+            	<select onchange="" name="order">
+            	<option value="asc">升序</option>
+            	<option value="desc">降序序</option>
+            	</select>
+            	</h1>
+            	
+            	<table cellspacing="0">
+            	<thead>
+            	<tr>
+            	  <th>选择</th>
+                                <th>订单编号</th>
+                                <th>产品名称</th>
+								<th>客户姓名</th>
+                                <th>更新日期 </th>
+                                <th>订单状态</th>
+                                <th>面试时间</th>
+                                <th>送签员</th>
+                                <th>职业</th>
+                                <th>出发时间</th>
+            	</tr>
+            	</thead>
+            	<tbody>
+               <c:forEach items="${pageBean.recordList}" var="order"  varStatus="status">
+            	<tr>
+            	<td><input type="checkbox" name="id[]" value="${order.id }"></td>
+            	<td><a href="#" style="font-weight:bold;">${order.serialnumber }</a></td>
+            	<td>${order.visaProduct.name }</td>
+            	</tr>
+          	  </c:forEach>
+            	</tbody>
+            	</table>
+            	
+            	</div>
+            	
+            	
+            	</form>
+        </div>
+       	
+        
+     
+</div>   
+<script type="text/javascript" src="http://toplife.gotoip55.com/statics/js/cookie.js"></script>
+<script language="JavaScript">
+<!--
+$(document).ready(function() {
+	var announcement = getcookie('announcement_42_');
+	if(announcement==null || announcement=='') {
+		$("#announcement").fadeIn("slow");
+	}
+});
+//-->
+</script>
+
+<script language="JavaScript">
+<!--
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"MembershipInfo",onerror:function(msg){}});
+	$("#msn").formValidator({onshow:"请输入qq/msn",onfocus:"请输入qq/msn"}).inputValidator({min:6,max:20,onerror:"请输入qq/msn"});
+	$("#tel").formValidator({onshow:"请输入电话",onfocus:"请输入电话"}).inputValidator({min:6,max:20,onerror:"请输入电话"});
+	$("#turename").formValidator({onshow:"请输入姓名",onfocus:"请输入姓名"}).inputValidator({min:6,max:8,onerror:"姓名为3-4个字符"});
+	$("#company").formValidator({onshow:"请输入公司名称",onfocus:"请输入公司名称"}).inputValidator({min:6,max:80,onerror:"公司名称为8-80个字符"});
+	$("#company_address").formValidator({onshow:"请输入公司地址",onfocus:"请输入公司地址"}).inputValidator({min:6,max:80,onerror:"公司地址为3-80个字符"});
+	$("#job_zw").formValidator({onshow:"请输入职务",onfocus:"请输入职务"}).inputValidator({min:6,max:20,onerror:"职务3-20个字符"});
+	$("#nickname").formValidator({onshow:"请输入昵称",onfocus:"昵称应该为2-20位之间"}).inputValidator({min:2,max:20,onerror:"昵称应该为2-20位之间"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"昵称格式错误"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checknickname_ajax&userid=42",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "已经存在",
+		onwait : "请稍候..."
+	}).defaultPassed();
+	
+	$("#email").formValidator({onshow:"请输入邮箱",onfocus:"邮箱格式错误",oncorrect:"邮箱格式正确"}).inputValidator({min:2,max:32,onerror:"邮箱应该为2-32位之间"}).regexValidator({regexp:"email",datatype:"enum",onerror:"邮箱格式错误"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checkemail_ajax",
+		datatype : "html",
+		async:'false',
+		success : function(data){	
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "禁止注册或邮箱已存在",
+		onwait : "请稍候..."
+	}).defaultPassed();
+
+	$("#turename").formValidator({onshow:"请输入真实姓名",onfocus:"请输入真实姓名"}).inputValidator({min:1,max:100,onerror:"请输入真实姓名"});$("#tel").formValidator({onshow:"请输入电话/手机",onfocus:"请输入电话/手机"}).inputValidator({min:1,max:100,onerror:"请输入电话/手机"});$("#qq").formValidator({onshow:"请输入QQ/MSN",onfocus:"请输入QQ/MSN"}).inputValidator({min:1,max:100,onerror:"请输入QQ/MSN"});$("#company").formValidator({onshow:"请输入公司名称",onfocus:"请输入公司名称"}).inputValidator({min:1,max:100,onerror:"请输入公司名称"});$("#job_zw").formValidator({onshow:"请输入职务",onfocus:"请输入职务"}).inputValidator({min:0,max:100,onerror:"请输入职务"});$("#company_address").formValidator({onshow:"请输入公司地址",onfocus:"请输入公司地址"}).inputValidator({min:0,max:100,onerror:"请输入公司地址"});});
+
+//-->
+</script>
+
+
+            </div>
+			
+			
+ 
+		
+<BR />
+
+<div id="footer">
+    <p>
+    <a href="http://toplife.gotoip55.com/about.html" target="_blank">关于我们</a>
+    <a href="http://toplife.gotoip55.com/login_ty.html" target="_blank">同业系统</a>
+    <a href="http://toplife.gotoip55.com/visalists-8-1.html" target="_blank">签证服务</a>
+    <a href="http://toplife.gotoip55.com/show-7-61-1.html" target="_blank">付款方式</a>
+    
+  
+</p>
+    
+    <p>
+		专业旅游签证公司，钧通商旅帮你忙	</p>
+</div>	
+
+
+</body>
+</html>

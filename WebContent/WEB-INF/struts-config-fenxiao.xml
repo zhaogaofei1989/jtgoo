@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="RoleActionForm" type="cn.jtgoo.cms.web.struts.formbean.RoleActionForm"></form-bean>
+		<form-bean name="DepartmentActionForm" type="cn.jtgoo.cms.web.struts.formbean.DepartmentActionForm"></form-bean>
+		<form-bean name="UserActionForm" type="cn.jtgoo.cms.web.struts.formbean.UserActionForm"></form-bean>
+		<form-bean name="ForumManageActionForm" type="cn.jtgoo.cms.web.struts.formbean.ForumManageActionForm"></form-bean>
+		<form-bean name="CustomerActionForm" type="cn.jtgoo.cms.web.struts.formbean.CustomerActionForm"></form-bean>
+		<form-bean name="VisaOrderActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaOrderActionForm"></form-bean>
+		<form-bean name="VisaTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaTypeActionForm"></form-bean>
+		<form-bean name="VisaDataTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaDataTypeActionForm"></form-bean>
+		<form-bean name="VisaDataTypeDetailActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaDataTypeDetailActionForm"></form-bean>
+		<form-bean name="VisaLingquActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaLingquActionForm"></form-bean>
+		<form-bean name="VisaCountryActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaCountryActionForm"></form-bean>
+		<form-bean name="VisaProductActionForm" type="cn.jtgoo.cms.web.struts.formbean.VisaProductActionForm"></form-bean>
+		<form-bean name="AttachmentActionForm" type="cn.jtgoo.cms.web.struts.formbean.AttachmentActionForm"></form-bean>
+		<form-bean name="PeerGroupActionForm" type="cn.jtgoo.cms.web.struts.formbean.PeerGroupActionForm"></form-bean>
+		<form-bean name="CustomerServicersActionForm" type="cn.jtgoo.cms.web.struts.formbean.CustomerServicersActionForm"></form-bean>
+		<form-bean name="ReserveOrderActionForm" type="cn.jtgoo.cms.web.struts.formbean.ReserveOrderActionForm"></form-bean>
+		<form-bean name="InsuranceTypeActionForm" type="cn.jtgoo.cms.web.struts.formbean.InsuranceTypeActionForm"></form-bean>
+		<form-bean name="InsurancePackageActionForm" type="cn.jtgoo.cms.web.struts.formbean.InsurancePackageActionForm"></form-bean>
+	</form-beans>
+	<global-exceptions>
+	<exception key="common.file" path="/error.jsp" type="cn.jtgoo.cms.exception.AppException" handler="cn.jtgoo.cms.exception.AppExceptionHandler"></exception>
+	</global-exceptions>
+	<global-forwards />
+	<action-mappings>
+		<!-- 同业用户管理 -->
+		<action path="/fenxiao/PeerUserAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.PeerUserAction" parameter="method" name="CustomerActionForm" scope="request">
+		 <forward name="addRegisterInfo" path="/static/success.html"></forward>
+		 <forward name="peerRegisterUI" path="/WEB-INF/fenxiao/PeerUserAction/register.jspx"></forward>
+		 <forward name="peerUserList" path="/WEB-INF/jsp/PeerUserAction/peerUserList.jsp"></forward>
+		 <forward name="peerApply" path="/WEB-INF/jsp/PeerUserAction/peerApplyList.jsp"></forward>
+		 <forward name="customerOrderList" path="/WEB-INF/jsp/CustomerAction/fenxiao/show.jsp"></forward>
+		 <forward name="loginUI" path="/WEB-INF/fenxiao/PeerUserAction/login-ty.jsp"></forward>
+		 <forward name="index" path="/WEB-INF/fenxiao/PeerUserAction/show.jsp"></forward>
+		 <forward name="account_manage" path="/WEB-INF/fenxiao/PeerUserAction/user_modify.jsp"></forward>
+		 <forward name="account_manage_update" path="/WEB-INF/fenxiao/PeerUserAction/user_modify.jsp"></forward>
+		 <forward name="account_manage_password" path="/WEB-INF/fenxiao/PeerUserAction/pwd_modify.jsp"></forward>
+		 <forward name="account_manage_password_update" path="/WEB-INF/fenxiao/PeerUserAction/pwd_modify.jsp"></forward>
+		</action>
+		<action path="/fenxiao/VisaProductFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.VisaProductFenXiaoAction" parameter="method" scope="request">
+		 <forward name="list" path="/WEB-INF/fenxiao/VisaProductFenXiaoAction/visa_center.jsp"></forward>
+		 <forward name="visaProductList" path="/WEB-INF/fenxiao/VisaProductFenXiaoAction/visaProductList.jsp"></forward>
+		 <forward name="productView" path="/WEB-INF/fenxiao/VisaProductFenXiaoAction/product_view.jsp"></forward>
+		 <forward name="bookingFeeList" path="/WEB-INF/fenxiao/VisaProductFenXiaoAction/bookingFeeList.jsp"></forward>
+		 <forward name="paid_order" path="/WEB-INF/fenxiao/VisaProductFenXiaoAction/paid_order.jsp"></forward>
+		 
+		</action>
+		<action path="/fenxiao/VisaOrderFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.VisaOrderFenXiaoAction" parameter="method" scope="request">
+		 <forward name="customerOrderList" path="/WEB-INF/fenxiao/VisaOrderFenXiaoAction/orderlist.jsp"></forward>
+		 <forward name="appointmentDynamicTimeList" path="/WEB-INF/fenxiao/VisaOrderFenXiaoAction/time_dynamic.jsp"></forward>
+		 <forward name="productOrderUI" path="/WEB-INF/fenxiao/VisaOrderFenXiaoAction/product_order.jsp"></forward>
+		 <forward name="success" path="/WEB-INF/fenxiao/VisaOrderFenXiaoAction/success.jsp"></forward>
+		</action>																					
+		<action path="/fenxiao/CustomerServiceFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.CustomerServiceFenXiaoAction" name="CustomerServicersActionForm" parameter="method" scope="request">
+		 <forward name="list" path="/WEB-INF/fenxiao/CustomerserviceFenxiaoAction/service_manage.jsp"></forward>
+		 <forward name="addUI" path="/WEB-INF/fenxiao/CustomerserviceFenxiaoAction/service_add.jsp"></forward>
+ 		<forward name="updateUI" path="/WEB-INF/fenxiao/CustomerserviceFenxiaoAction/service_modify.jsp"></forward>
+		 <forward name="toList" path="/fenxiao/CustomerServiceFenXiaoAction.do?method=list" redirect="true"></forward>
+		 <forward name="update" path="/WEB-INF/fenxiao/CustomerserviceFenxiaoAction/service_manage.jsp"></forward>
+		</action>
+		<action path="/fenxiao/CustomerFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.CustomerFenXiaoAction" name="CustomerFenXiaoActionForm" parameter="method" scope="request">
+		 <forward name="list" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/list.jsp"></forward>
+		 <forward name="addUI" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/service_add.jsp"></forward>
+ 		 <forward name="updateUI" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/service_modify.jsp"></forward>
+		 <forward name="toList" path="/fenxiao/CustomerFenXiaoAction.do?method=list" redirect="true"></forward>
+		 <forward name="update" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/service_manage.jsp"></forward>
+		 <forward name="topUI" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/top.jsp"></forward>
+		 <forward name="contentUI" path="/WEB-INF/fenxiao/CustomerFenXiaoAction/content.jsp"></forward>
+		</action>
+     	    <!-- 保险类型管理 -->
+		<action path="/fenxiao/InsuranceTypeFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.InsuranceTypeFenXiaoAction" parameter="method" name="InsuranceTypeActionForm" scope="request">
+   	    <forward name="list" path="/WEB-INF/fenxiao/InsuranceTypeFenxiaoAction/insurance_type.jsp"></forward>
+		 <forward name="toList" path="/fenxiao/InsuranceTypeFenXiaoAction.do?method=list" redirect="true"></forward>
+		</action>
+		    <!-- 保险套餐管理 -->																
+		    																								
+		<action path="/fenxiao/InsurancePackageFenXiaoAction" type="cn.jtgoo.cms.web.struts.fenxiaoaction.InsurancePackageFenXiaoAction" parameter="method" name="InsurancePackageActionForm" scope="request">
+   	    <forward name="list" path="/WEB-INF/fenxiao/InsurancePackageFenxiaoAction/insurance_package.jsp"></forward>
+	    <forward name="pdfview" path="/WEB-INF/fenxiao/InsurancePackageFenxiaoAction/pdfview.jsp"></forward>
+		 <forward name="toList" path="/fenxiao/InsurancePackageFenxiaoAction.do?method=list" redirect="true"></forward>
+		</action>
+</action-mappings>
+</struts-config>

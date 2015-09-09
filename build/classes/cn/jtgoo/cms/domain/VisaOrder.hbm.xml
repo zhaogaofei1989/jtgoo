@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+
+	<class name="VisaOrder" table="jtgoo_visaorder">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="name"></property>
+		<property name="serialnumber" type="string" column="serialnumber"></property>
+		<property name="customService" type="string" column="customService"></property>
+		<property name="status" type="string" column="status"></property>
+		<property name="insurance"></property>
+		<property name="price"></property>
+		<property name="totalPrice"></property>
+		<property name="profit"></property>
+		<property name="reviewingDocuments" column="reviewingDocuments"></property>
+		<property name="payment" type="string"></property>
+		<property name="orderPrice"></property>
+		<property name="orderSurePrice"></property>
+		<property name="orderReceivedPrice"></property>
+		<property name="orderExpenditurePrice"></property>
+		<property name="scheduledtime" type="string" column="scheduledtime"></property>
+		<property name="interviewTime" type="string" column="interviewTime"></property>
+		<property name="uploadPath" type="string" column="uploadPath"></property>
+		
+		<property name="expectCertificateTime" type="string"></property>
+		<property name="sendSignedTime" type="string"></property>
+		<property name="supplementData" type="string"></property>
+		<property name="receivedDataTime1" type="string"></property>
+		<property name="receivedDataTime2" type="string"></property>
+		<property name="receivedDataTime3" type="string"></property>
+		<property name="remarksReception" type="string"></property>
+		<property name="remarksBackstage" type="string"></property>
+		
+		<property name="queryType" type="string" column="queryType"></property>
+		<property name="single" type="string" column="single"></property>
+		<property name="sentToSignPeople" type="string" column="sentToSignPeople"></property>
+		<property name="operator" type="string" column="operator"></property>
+		<!-- 需要10个操作员 -->
+		<property name="user1" type="string" column="user1"></property>
+		<property name="user2" type="string" column="user2"></property>
+		<property name="user3" type="string" column="user3"></property>
+		<property name="user4" type="string" column="user4"></property>
+		<property name="user5" type="string" column="user5"></property>
+		<property name="user6" type="string" column="user6"></property>
+		<property name="user7" type="string" column="user7"></property>
+		<property name="user8" type="string" column="user8"></property>
+		<property name="user9" type="string" column="user9"></property>
+		<property name="user10" type="string" column="user10"></property>
+
+		<property name="oneToManySelect" type="string" length="1"></property>
+		<property name="buyInsurance" type="string" length="1"></property>
+		<property name="insuranceRemarks" type="string"></property>
+		<property name="sendToRemark" type="string"></property>
+		<property name="interview" type="string"></property>
+		<property name="checkResults" type="string"></property>
+		<property name="assignmentTracker" type="string"></property>
+		<property name="express" type="string"></property>
+		<property name="expressNo" type="string"></property>
+		<property name="expressContact" type="string"></property>
+		<property name="expressContactInformation" type="string"></property>
+		<property name="expressAddress" type="string"></property>
+		<property name="passportReturnMethod" type="string" column="passportReturnMethod"></property>
+		<property name="passportGetTime" type="string" column="passportGetTime"></property>
+		<property name="expressMethod" type="string" column="expressMethod"></property>
+		<property name="receiver" type="string" column="receiver"></property>
+		<property name="receiverDate" type="string" column="receiverDate"></property>
+		<property name="receiverPhone" type="string" column="receiverPhone"></property>
+		<property name="recorder" type="string" column="recorder"></property>
+		<!-- 增加已补充资料 -->
+	<property name="dataIsComplete" type="string" column="dataIsComplete" length="1" ></property>
+	<property name="data1" type="string" column="data1"></property>
+	<property name="data2" type="string" column="data2"></property>
+	<property name="data3" type="string" column="data3"></property>
+	<property name="data4" type="string" column="data4"></property>
+	<property name="data5" type="string" column="data5"></property>
+	
+    <property name="datatime1" type="string" column="datatime1"></property>
+	<property name="datatime2" type="string" column="datatime2"></property>
+	<property name="datatime3" type="string" column="datatime3"></property>
+	<property name="datatime4" type="string" column="datatime4"></property>
+	<property name="datatime5" type="string" column="datatime5"></property>
+	<property name="payForTime" type="string" column="payForTime"></property>
+	<property name="payForAmount" type="double" column="payForAmount"></property>
+	<property name="del_status" type="string" column="del_status" length="1"></property>
+	<property name="user_type" type="integer" column="user_type" length="1"></property>
+	<property name="num" type="integer" column="num"></property>
+	<property name="num1" type="integer" column="num1"></property>
+	<property name="num2" type="integer" column="num2"></property>
+
+		
+		<!-- 订单和用户是多对一的关系 -->
+	
+		<many-to-one name="user" class="User" column="userId"></many-to-one>
+		<!-- 订单和签证产品是多对一的关系 -->
+	   <many-to-one name="visaProduct" class="VisaProduct" column="visaProductId"></many-to-one>
+	   		<!-- 订单和领区是多对一的关系 -->
+	   <many-to-one name="customer" class="Customer"  column="customerId"></many-to-one>
+	   <!--  联系人-->
+	   <many-to-one name="customerServicers" class="CustomerServicersVo"   column="customServiceId"></many-to-one>
+	   
+	   
+	   <set name="customerSet" table="jtgoo_cus_dat"  inverse="true">
+        	<key column="visaorderId"></key>
+        	<many-to-many class="Customer" column="customerId"></many-to-many>
+        </set>
+	
+
+	  <many-to-one name="member"  column="memberId"/>  
+	<many-to-one name="visaorder_attachment" class="VisaOrderAttachment" unique="true" column="visaorder_attchment_id"/>  
+	</class>
+</hibernate-mapping>
+
+
+

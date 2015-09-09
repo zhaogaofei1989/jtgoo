@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet
+END
+GetVisaCustomerInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaCustomerInfo.java
+END
+GetVisaTypeInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaTypeInfo.java
+END
+UserNameAutoComplete.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/UserNameAutoComplete.java
+END
+GetVisaCountryInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaCountryInfo.java
+END
+VisaAutoComplete.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/VisaAutoComplete.java
+END
+Tservlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/Tservlet.java
+END
+CustomerServicersAutoComplete.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/CustomerServicersAutoComplete.java
+END
+UploadFileServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jtgoo/!svn/ver/59/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/UploadFileServlet.java
+END
+GetVisaDataTypeInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaDataTypeInfo.java
+END
+GetCustomerInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jtgoo/!svn/ver/44/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetCustomerInfo.java
+END
+GetVisaDataTypeDetailInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaDataTypeDetailInfo.java
+END
+GetVisaLingquInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/src/cn/jtgoo/cms/servlet/GetVisaLingquInfo.java
+END

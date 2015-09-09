@@ -1,12 +1,255 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>jtgoo</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <context-param> 
+	  <param-name>contextConfigLocation</param-name>
+	  <param-value>classpath*:applicationContext.xml,classpath*:applicationContext-*.xml</param-value>
+ </context-param>
+ 
+ <listener>
+<listener-class>
+org.springframework.web.context.ContextLoaderListener
+</listener-class>
+</listener>
+ 
+	<filter>
+		<filter-name>SetRequestCharacterEncodingFilter</filter-name>
+		<filter-class>cn.jtgoo.cms.filter.SetRequestCharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SetRequestCharacterEncodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+ 
+	<filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>cn.jtgoo.cms.filter.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+
+<!-- 后台系统filter -->
+<filter>
+	<filter-name>CheckBackGroundFilter</filter-name>
+	<filter-class>cn.jtgoo.cms.filter.CheckBackGroundFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>CheckBackGroundFilter</filter-name>
+	<url-pattern>/background/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>CheckBackGroundFilter</filter-name>
+	<url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+
+<!--分销系统filter -->
+<filter>
+	<filter-name>CheckBackFenxiaoFilter</filter-name>
+	<filter-class>cn.jtgoo.cms.filter.CheckBackFenxiaoFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>CheckBackFenxiaoFilter</filter-name>
+	<url-pattern>/fenxiao/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+	<filter-name>CheckBackFenxiaoFilter</filter-name>
+	<url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+
+
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml,/WEB-INF/struts-config-fenxiao.xml</param-value>
+		</init-param>
+		   <init-param>
+    <param-name>application</param-name>
+    <param-value>ApplicationResources</param-value>
+    </init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param>
+			<param-name>detail</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>InstallServlet</servlet-name>
+		<servlet-class>cn.jtgoo.cms.install.InstallServlet</servlet-class>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VisaAutoComplete</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.VisaAutoComplete</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserNameAutoComplete</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.UserNameAutoComplete</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CustomerServicersAutoComplete</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.CustomerServicersAutoComplete</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetCustomerInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetCustomerInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaCustomerInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaCustomerInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaTypeInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaTypeInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaDataTypeDetailInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaDataTypeDetailInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaLingquInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaLingquInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaCountryInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaCountryInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetInsurancePackageInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetInsurancePackageInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.UploadFileServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetVisaDataTypeInfo</servlet-name>
+    <servlet-class>cn.jtgoo.cms.servlet.GetVisaDataTypeInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RandomCode</servlet-name>
+    <servlet-class>cn.jtgoo.cms.util.RandomCode</servlet-class>
+  </servlet>
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InstallServlet</servlet-name>
+		<url-pattern>/InstallServlet.do</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VisaAutoComplete</servlet-name>
+    <url-pattern>/background/VisaAutoComplete.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserNameAutoComplete</servlet-name>
+    <url-pattern>/background/UserNameAutoComplete.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerServicersAutoComplete</servlet-name>
+    <url-pattern>/background/CustomerServicersAutoComplete.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetCustomerInfo</servlet-name>
+    <url-pattern>/background/GetCustomerInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaTypeInfo</servlet-name>
+    <url-pattern>/background/GetVisaTypeInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaDataTypeDetailInfo</servlet-name>
+    <url-pattern>/background/GetVisaDataTypeDetailInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInsurancePackageInfo</servlet-name>
+    <url-pattern>/background/GetInsurancePackageInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaLingquInfo</servlet-name>
+    <url-pattern>/background/GetVisaLingquInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaCustomerInfo</servlet-name>
+    <url-pattern>/background/GetVisaCustomerInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaCountryInfo</servlet-name>
+    <url-pattern>/background/GetVisaCountryInfo.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadFileServlet</servlet-name>
+    <url-pattern>/background/UploadFileServlet.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetVisaDataTypeInfo</servlet-name>
+    <url-pattern>/background/GetVisaDataTypeInfo.do</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet-mapping>
+    <servlet-name>RandomCode</servlet-name>
+    <url-pattern>/RandomCode</url-pattern>
+  </servlet-mapping>
+ 
+  
+  <servlet>
+	<servlet-name>RestletServlet</servlet-name>
+	<servlet-class>org.restlet.ext.spring.SpringServerServlet</servlet-class>
+	<init-param>
+		<param-name>org.restlet.application</param-name>
+		<param-value>restapplication</param-value>
+	</init-param>		
+	<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>RestletServlet</servlet-name>
+	<url-pattern>/rest/*</url-pattern>
+</servlet-mapping> 
+  
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
+

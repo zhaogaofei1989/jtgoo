@@ -1,0 +1,254 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>用户注册</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<script type="text/html" src="static/layout/js/verify.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/layout/register.css" />
+	<script>
+			  // 检查用户名
+		function checkname()
+		{		
+		    var username = document.getElementById("userName").value;
+		    var uname = document.getElementById("divname");
+		    if(username=="")
+			{
+		        uname.innerHTML="<font color='red'>用户名不能为空!</font>";
+		       	return false;
+			}
+			
+			if(username.length < 1 || username.length > 20) {
+				uname.innerHTML="<font color='red'>用户名为1-20个字符之间</font>";
+			} else {
+				uname.innerHTML="<font color='green'>√</font>";
+			}					
+		}
+		
+			  //验证密码 
+		function checkpwd1(){    
+			var pwd1 = document.getElementById("passwd").value;
+			var divpwd1 = document.getElementById("divpwd"); 
+			var flagZM=false ;
+			var flagSZ=false ; 
+			var flagQT=false ;
+			
+			if(pwd1 == "") {
+				divpwd1.innerHTML='<font color="red">密码不能为空</font>';
+				return false;
+			}
+			
+			if(pwd1.length<6 || pwd1.length>20){   
+				divpwd1.innerHTML='<font color="red">密码由字母和数字组成(为6-20个字符之间)</font>';
+			} else {   
+				  for(i=0;i < pwd1.length;i++)   
+				  {    
+						if((pwd1.charAt(i) >= 'A' && pwd1.charAt(i)<='Z') || (pwd1.charAt(i)>='a' && pwd1.charAt(i)<='z')) 
+						{   
+							flagZM=true;
+						}
+						else if(pwd1.charAt(i)>='0' && pwd1.charAt(i)<='9')    
+						{ 
+							flagSZ=true;
+						}else    
+						{ 
+							flagQT=true;
+						}   
+				   }   
+					if(!flagZM||!flagSZ||flagQT){
+						divpwd1.innerHTML='<font color="red">密码必须是字母数字的组合</font>'; 
+					}else{	
+						divpwd1.innerHTML="<font color='green'>√</font>";
+					}  
+			}	
+		}
+		
+		//验证确认密码 
+		function checkpwd2(){
+				var pwd2 = document.getElementById("confirmPasswd").value;
+				var divpwd2 = document.getElementById("divpwd1");
+				if(pwd2 == "") {
+					divpwd2.innerHTML="<font></font>";
+					return false;
+				}
+				
+				if(pwd2 != document.getElementById("passwd").value) { 
+				     divpwd2.innerHTML='<font color="red">输入的密码不一致</font>';
+				} else { 
+				     divpwd2.innerHTML="<font color='green'>√</font>";
+				}
+		}
+		
+		//验证用户真实姓名
+		function checkrel_name() {
+			var my_name = document.getElementById("name").value;
+			var real_name = document.getElementById("realname");
+			if(my_name == "") {
+				real_name.innerHTML="<font color='red'>姓名不能为空</font>"
+				return false;
+			}
+		}
+		
+			//验证联系电话
+		function checkphone() {
+			var telphone = document.getElementById("phone").value;
+			var div_phone = document.getElementById("divphone");
+			if(telphone == "") {
+				div_phone.innerHTML="<font color='red'>联系电话不能为空</font>"
+				return false;
+			}
+		}
+		
+			//验证邮箱
+		function checkmail() {
+			var mail_qq = document.getElementById("email").value;
+			var div_mail = document.getElementById("divmail");
+			if(mail_qq == "") {
+				div_mail.innerHTML="<font color='red'>邮箱不能为空</font>"
+				return false;
+			}
+		}
+		
+			//验证公司名称
+		function checkcompany() {
+			var adr_company = document.getElementById("companyName").value;
+			var div_company = document.getElementById("divcompany");
+			if(adr_company == "") {
+				div_company.innerHTML="<font color='red'>公司地址不能为空</font>"
+				return false;
+			}
+		}
+	
+	</script>
+	
+  </head>
+  
+  <body>
+    <div id="Banner">
+    	<span id="font_title">钧通同业分销系统</span>
+    	<div id="head_img">
+    		<span>4000-987-088</span>
+    	</div>
+    	<div class="login_now">
+    		<input id="LoginNow" type="submit" onclick="javascrtpt:window.location.href='http://127.0.0.1:8080/jtgooCMS/static/login-ty.html'"
+    			value="登录" name="dosubmit" />
+			<span>
+			<a href="http://toplife.gotoip55.com/forget_password.html">找回密码</a>
+			</span>
+    	</div>
+    </div>
+    <div class="body_txt">
+    	<div class="head_rgs">
+    		<span>同业用户注册</span>
+    	</div>
+    	<div  class="head_rgs1">
+    		<span class="on"><em>1</em>填写信息</span>
+	   		<span><em>2</em>邮箱验证</span>
+	   		<span><em>3</em>注册成功</span>
+    	</div>
+    	<div class="rgs_form">
+    		<form id="myform" name ="CustomerActionForm" action="/jtgooCMS/CustomerAction.do" method="post">
+    		<input type="hidden" name="method" value="addRegisterInfo">
+				<table class="space" border="0">
+					<tr>
+						<td class="label">用户名：</td>
+						<td><input id="userName" placeholder="请输入用户名" type="text" name="userName" class="input-text" size="25" onblur="checkname()" required  />
+							<span id="divname" class="txt">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">密码：</td>
+						<td><input id="passwd" placeholder="请输入密码" type="password" name="passwd" class="input-text" size="25" onblur="checkpwd1()" required />
+							<span id="divpwd" class="txt">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">确认密码：</td>
+						<td><input id="confirmPasswd" placeholder="请再次输入密码" type="password" name="confirmPasswd" class="input-pwd1" size="25" onblur="checkpwd2()" required />
+							<span id="divpwd1" class="txt">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">姓名：</td>
+						<td><input id="name" placeholder="请输入真实姓名" type="text" name="name" class="input-text" size="20" onblur="checkrel_name()" required />
+						<span id="realname" class="txt">*</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">电话/手机：</td>
+						<td><input id="phone" placeholder="请输入联系电话" type="text" name="phone" class="input-text" size="40" onblur="checkphone()" required />
+						<span id="divphone" class="txt">*</span></td>
+					</tr>
+					<tr>
+						<td class="label">QQ/邮箱：</td>
+						<td><input id="email" placeholder="请输入邮箱地址或QQ号码" type="text" name="email" class="input-text" size="40" onblur="checkmail()" required />
+						<span id="divmail" class="txt">*</span></td>
+					</tr>
+					<tr>
+						<td class="label">公司名称：</td>
+						<td><input id="companyName" placeholder="请输入公司名称" type="text" name="companyName" class="input-text" size="40" onblur="checkcompany()" required />
+						<span id="divcompany" class="txt">*</span></td>
+					</tr>
+					<tr>
+						<td class="label">职务：</td>
+						<td><input id="position" type="text" name="position" class="input-text" size="40" /></td>
+					</tr>
+					<tr>
+						<td class="label">公司地址：</td>
+						<td><input id="companyAddr" type="text" name="companyAddr" class="input-text" size="40" /></td>
+					</tr>
+					<tr>
+						<td class="label">验证码：</td>
+						<td text-align:center><input id="verification" type="text" name="verification" class="input-text" size="10" />
+							<span class="vfn" ><img src="http://toplife.gotoip55.com/api.php?op=checkcode&amp;code_len=4&amp;font_size=14&amp;width=80&amp;height=24&amp;font_color=&amp;background=&amp;0.4338128893385238" onclick="this.src=this.src+&quot;&amp;&quot;+Math.random()" id="code_img" /></span>
+						</td>
+				</table>
+				<div class="reg">
+					<div class="submit">
+						<input type="submit" value="同意注册协议并提交注册" name="dosubmit" />
+					</div>
+					<div class="read">
+						<input id="protocol" type="checkbox" value="" name="protocol">
+						<a class="blue" onclick="show_protocol();return false;" href="javascript:void(0);">点击阅读注册协议</a>
+					</div>
+				</div>
+			</form>
+    	</div>
+    </div>
+    
+    <script type="text/javascript">
+    		<%--$(":checkbox[name='protocol']").formValidator({tipid:"protocoltip",onshow:"请阅读协议",
+    		onfocus:"请阅读协议"}).inputValidator({min:1,onerror:"请阅读协议"});--%>
+    		
+    		function show_protocol() {
+				art.dialog({lock:false,title:'会员注册协议',id:'protocoliframe', 
+				iframe:'http://toplife.gotoip55.com/index.php?m=member&amp;c=index&amp;a=register&amp;protocol=1',
+				width:'500',height:'310',yesText:'同意'}, function(){
+				$("#protocol").attr("checked",true);
+				});
+			}
+    </script>
+    
+    <div class="footer">
+    	<p>
+			<a target="_blank" href="http://toplife.gotoip55.com/about.html">关于我们</a>
+			<a target="_blank" href="http://toplife.gotoip55.com/login_ty.html">同业系统</a>
+			<a target="_blank" href="http://toplife.gotoip55.com/visalists-8-1.html">签证服务</a>
+			<a target="_blank" href="http://toplife.gotoip55.com/show-7-61-1.html">付款方式</a>
+    	</p>
+    	<p>专业旅游签证公司，钧通商旅帮你忙</p>
+    </div>
+  </body>
+</html>

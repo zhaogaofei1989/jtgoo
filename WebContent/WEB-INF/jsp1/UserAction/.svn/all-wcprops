@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/jtgoo/!svn/ver/59/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction
+END
+addUI.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction/addUI.jsp
+END
+loginUI.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/jtgoo/!svn/ver/91/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction/loginUI.jsp
+END
+logout.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jtgoo/!svn/ver/29/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction/logout.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/jtgoo/!svn/ver/59/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction/list.jsp
+END
+editUI.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jtgoo/!svn/ver/59/branches/code/jtgooCMS/WebRoot/WEB-INF/jsp/UserAction/editUI.jsp
+END

@@ -1,0 +1,51 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
+ <div class="am-cf">
+					  共 ${pageBean.recordCount }条记录
+					  <div class="am-fr">
+					    <ul class="am-pagination">
+					    	<li class="am-disabled">
+					    	<span onclick="prePage('${pageBean.previousPage}')">«</span></li>
+					    	  <c:forEach begin="${pageBean.beginPageIndex}" end="${pageBean.endPageIndex}" var="num" >
+								<c:if test="${pageBean.currentPage eq num}">
+								    <li class="am-active">
+								    <span>${num}</span>
+								    </li>
+								</c:if>
+								<c:if test="${pageBean.currentPage ne num}">
+								 <li>
+								 <span style="cursor: hand;" onClick="gotoPage(${num});">${num}</span>
+								 </li>
+								</c:if>
+							</c:forEach>
+							<li>
+							 	<span onclick="nextPage('${pageBean.nextPage}')">»</span>
+							</li>
+					    </ul>
+					  </div>
+					</div>
+<script type="text/javascript">
+	function gotoPage( pageNum ){
+		// window.location.href = "${basePath}/ForumAction.do?method=show&id=${forum.id}&pageNum=" + pageNum;
+		document.forms[0].pageNum.value =pageNum;
+		document.forms[0].submit();
+	}
+	//下一页
+	function nextPage( pageNum){
+		// window.location.href = "${basePath}/ForumAction.do?method=show&id=${forum.id}&pageNum=" + pageNum;
+		document.forms[0].pageNum.value =pageNum;
+		document.forms[0].submit();
+	}
+	//上一页
+	function prePage( pageNum ){
+		// window.location.href = "${basePath}/ForumAction.do?method=show&id=${forum.id}&pageNum=" + pageNum;
+		document.forms[0].pageNum.value =pageNum;
+		document.forms[0].submit();
+	}
+	function subPageSize(size)
+	{
+		document.forms[0].pageSize.value = size;
+		document.forms[0].submit();
+	}
+</script>

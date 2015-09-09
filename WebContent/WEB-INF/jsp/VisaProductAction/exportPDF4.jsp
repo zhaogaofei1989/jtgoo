@@ -1,0 +1,188 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	request.setAttribute("basePath",  basePath);
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>钧通商旅</title>
+<link rel="stylesheet" type="text/css" href="${basePath}style/blue/base.css"/>
+<link rel="stylesheet" type="text/css" href="${basePath}style/blue/ExportTablePage.css"/>
+<script type="text/javascript" src="${basePath}/js/jquery-1.7.js"></script>
+</head>
+<body style="margin-left: auto; margin-right: auto; width: 1000px;">
+<div id="printDiv">  
+		
+	<div id="top">
+ 
+    </div>
+    
+     <div id="MainTable">
+    	<h1>签证材料</h1>
+        <div id="VisaInfoDetail">
+        	<ul class="left">
+            	<li>产品编号：${product.serialNumber}</li>
+                <li>领区：${product.name}</li>
+            </ul>
+            
+            <ul class="middle">
+            	<li>洲际：
+            		<c:if test="${product.country.parent ne null}">
+            		${product.country.parent.name}
+            		</c:if>
+            	</li>
+                <li>签证类型： ${product.type.name}</li>
+            </ul>
+            
+            <ul class="right">
+            	<li>国家：${product.country.name}</li>
+                 <li>职业：<span id="occutype"></span></li>
+            </ul>
+        </div>
+        
+    
+        <dl id="InformationList">
+     
+   <c:if test="${product.lingquDivide ne ''}">
+	  		<dt>领区划分：</dt>
+            <dd>
+            ${product.lingquDivide}  </dd>
+      </c:if>
+      
+                                    <dt>签证材料</dt>
+        </dl>
+          <c:forEach items="${dataTypeMaps}" var="map">
+
+        <div id="c_${map.key}">   
+        <c:forEach items="${map.value}" var="dataType" varStatus="status">
+              <table cellspacing="0" class="PersonInfo">
+        	<caption>${status.index+1}.${dataType.name}</caption>
+        	  <thead>
+            	<tr>
+                	<td width="200px;" style="text-align:center;">名称</td>
+                	<td style="text-align:center;">详细资料</td>
+                </tr>
+            </thead>
+                <tbody>
+              <c:forEach items="${dataTypeDetailList}" var="dataTypeDetail"  varStatus="status">
+              <c:if test="${ dataType.id   eq  dataTypeDetail.dataType.id and  map.key eq dataTypeDetail.type}">
+	                <tr>
+	                 <td><c:if test="${dataTypeDetail.sign eq 0 }"><font color="red">*</font>&nbsp;</c:if>${dataTypeDetail.title}</td>
+	                 <td style="text-align:left;padding-left:8px;">${dataTypeDetail.content }</td>
+               		  </tr>
+              </c:if>
+                </c:forEach>
+            </tbody>
+        	</table>
+        
+        
+        </c:forEach>
+        </div>
+        </c:forEach>
+        
+        <br/>
+          <table cellspacing="0" class="PersonInfo">
+               <thead>
+                <tr><td  style="text-align:center;word-break:break-all;"  width="200px;">免责条款</td><td   style="text-align:left;padding-left:8px;word-break:break-all">${product.disclaimer}</td></tr>
+                <tr><td  style="text-align:center;word-break:break-all;"  width="200px;">备注</td><td   style="text-align:left;padding-left:8px;word-break:break-all;">${product.visaRemarks }</td></tr>
+               </thead>
+             </table>
+         
+    </div>
+  
+    <div id="PageFooter" >
+        </div>
+		
+		</div>
+			   <p style=" float:right; margin-right:120px;" class="noprint" ><input type="button" value="打印" onclick="printPdf()"/></p>
+   <div style="float: right; margin-top:2px;margin-right:10px;" class="noprint">
+   选择职业：<c:forEach items="${occuMap}" var="occu">${occu.value } <input type="checkbox" onclick="check(this.value)"  name="checkbox" id="${occu.key }"  value="${occu.key }"/> </c:forEach>
+		</div>
+</body>
+</html>
+
+<script type="text/javascript">
+$(function(){
+   	//默认为1
+   	var checkvalue;
+   	var divarray=$("div[id^='c']");
+   	for(var i=0;i<divarray.length;i++)
+   	{
+   	if(divarray[i].children.length>0)
+   	{
+   	checkvalue=i;
+   	break;
+   	}
+   	}
+  check(checkvalue);
+   	});
+function printPdf()
+{
+var printData = document.getElementById("printDiv").innerHTML; 
+window.document.body.innerHTML = printData;
+window.print();
+}
+
+ function check(value)
+ {
+$("#occutype").html(""); 
+var ches=document.getElementsByName("checkbox");
+if(value=='')
+{
+$("#c_"+ches[value].value).show();
+ches[value].checked=true;
+changeOccu(value);
+for (var i=0;i<ches.length;i++)
+{
+if(i!=value)
+{
+$("#c_"+ches[i].value).hide();
+}
+}
+}
+else
+{
+for (var i=0;i<ches.length;i++)
+{
+if(ches[i].checked)
+{
+$("#c_"+ches[i].value).show();
+changeOccu(i);
+}
+else
+{
+$("#c_"+ches[i].value).hide();
+}
+}
+
+}
+
+function changeOccu(value)
+{
+if(value==0)
+{
+$("#occutype").append("在职人员 ");
+}
+else if(value==1)
+{
+$("#occutype").append("退休人员 ");
+}
+else if(value==2)
+{
+$("#occutype").append("学生及未成年 ");
+}
+else if(value==3)
+{
+$("#occutype").append("自由职业");
+}
+else if(value==4)
+{
+$("#occutype").append("不分职业");
+}
+}
+}
+</script>
+    

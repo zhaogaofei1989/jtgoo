@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="styles/paid_order.css" />
+<title>已付款订单</title>
+</head>
+<body>
+
+<!-- ------菜单版块动态控制--------- -->
+<script type="text/javascript">
+	// param参数的名
+	$(function() {
+		$(".leve1").hide(100);
+		
+	});
+		function menuClick(top){
+			$(".leve1").not( $(top).siblings("ul")).hide(100); // 把其它二级菜单都隐藏
+			$(top).siblings("ul").toggle(100); // 切换当前二级菜单的可见状态
+		}
+</script>
+
+<script type="text/javascript">
+	// param参数的名
+	$(function() {
+		$(".leve2").hide(100);
+		
+	});
+		function menuClick(top){
+			$(".leve2").not( $(top).siblings("ul")).hide(100); // 把其它三级菜单都隐藏
+			$(top).siblings("ul").toggle(100); // 切换当前三级菜单的可见状态
+		}
+</script>
+
+<!-- -----------头部---------------- -->
+	<div class="banner">
+    	<span>钧通同业分销系统</span>
+        <div class="banner1">
+        	<img height="24px" src="images/banner1.gif" />
+        	<span>4000-987-088</span>
+        </div>
+        <p><a href="http://wpa.qq.com/msgrd?v=3&uin=&site=qq&menu=yes" target="_blank"><img height="24px" src="images/qq.gif" /></a></p>
+    </div>
+    <div class="header">
+    	<div class="header11">
+        	<a href="http://toplife.gotoip55.com/"><img height="64px" src="images/head_logo.gif" /></a>
+        </div>
+        <div class="status">
+        	<ul class="loginStatus">
+                <li>
+                	<span class="login_li">！！欢迎登录同业分销系统</span>
+                    <span>你的身份是<b>&nbsp同业用户</b></span>
+                    <span>
+                        <a href="http://127.0.0.1:8080/jtgooCMS/static/login-ty.html">退出登录</a>
+                        <a href="http://toplife.gotoip55.com/index.php?m=member&c=index">同业系统首页</a>
+                        <a href="http://127.0.0.1:8080/jtgooCMS/static/index.html">网站主页</a>
+                	</span>
+                </li>
+                <li>
+                    最新签证订单：未审核
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=visaorder&status=0">0</a>
+                    </strong>
+                    个，已确认
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=visaorder&status=1">0</a>
+                    </strong>
+                    个，正在处理中
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=visaorder&status=2">0</a>
+                    </strong>
+                    个; 最新线路订单：未审核
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=triporder&status=0">0</a>
+                    </strong>
+                    个，已确认
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=triporder&status=1">0</a>
+                    </strong>
+                    个，已付款
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=triporder&status=2">0</a>
+                    </strong>
+                    个，处理中
+                    <strong>
+                    <a href="index.php?m=member&c=index&a=triporder&status=3">0</a>
+                    </strong>
+                    个;
+                </li>
+        	</ul>
+        </div>
+        
+        <div class="notification">
+        	<dl id="broadCast">
+            	<dt>
+                	<span>
+						<a href="javascript:announce('46','持有美国签证可免签入境国')">持有美国签证可免签入境国</a>
+					</span>
+                    <font>
+                    	<a href="http://toplife.gotoip55.com/index.php?m=member&c=index&a=announcelist">[更多公告...]</a>
+                    </font>
+                </dt>
+            </dl>
+        </div>
+        <div class="notification1">
+        	<a href="http://toplife.gotoip55.com/index.php?m=message&amp;c=index&amp;a=send">[更多通知...]</a>
+        </div> 
+    </div>
+
+<div class="content">    
+
+    <!-- -----------------左边菜单版块---------------- -->
+<div class="left">
+	<ul>
+			<!-- 签证中心 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 签证中心 -</span>
+				<ul class="leve1">
+					<li>
+						<span class="level2Style"><a href="visa_center.html" target="_blank">签证中心</a></span>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- 签证订单管理 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 签证订单管理 -</span>
+				<ul class="leve1">
+					<li>
+						<span class="level2Style" onclick="menuClick(this)">+ 签证订单列表</span>
+						<ul class="leve2">
+							<li class="level3Style">已预定订单</li>
+							<li class="level3Style">已收材料订单</li>
+							<a href="CustomerAction.do?method=customerOrderList&status=7" target="_blank"><li class="level3Style">已审核订单</li></a>
+							<li class="level3Style"><a href="paid_order.html" target="_blank">已付款订单</a></li>
+							<li class="level3Style">已预约订单</li>
+							<li class="level3Style">已面试送签</li>
+							<li class="level3Style">已出签订单</li>
+							<a href="CustomerAction.do?method=customerOrderList&status=3"><li class="level3Style">已完成订单</li></a>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			
+			<!-- 预约时间动态 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 预约时间动态 -</span>
+				<ul class="leve1">
+					<li><span class="level2Style"><a href="time_dynamic.html" target="_blank">北京</a></span></li>
+					<li><span class="level2Style"><a href="time_dynamic.html" target="_blank">上海</a></span></li>
+					<li><span class="level2Style"><a href="time_dynamic.html" target="_blank">广州</a></span></li>
+				</ul>
+			</li>
+			
+			<!-- 签证费/预约费 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 签证费/预约费 -</span>
+				<ul class="leve1">
+					<li><span class="level2Style"><a href="visa_cost.html" target="_blank">签证费/预约费列表</a></span></li>
+				</ul>
+			</li>
+			
+			<!-- 保险中心 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 保险中心 -</span>
+				<ul class="leve1">
+					<li><span class="level2Style"><a href="insurance_price.html" target="_blank">保险报价</a></span></li>
+					<li><span class="level2Style">保险保障</span></li>
+				</ul>
+			</li>
+			
+			<!-- 线路中心 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 线路中心 -</span>
+				<ul class="leve1">
+					<li><span class="level2Style"><a href="traveline_center.html">旅游线路中心</a></span></li>
+					<li><span class="level2Style">商旅会展中心</span></li>
+					<li><span class="level2Style">特色项目中心</span></li>
+				</ul>
+			</li>
+		
+		<!-- 线路订单管理 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 线路订单管理 -</span>
+				<ul class="leve1">
+					<li>
+						<span class="level2Style" onclick="menuClick(this)">+ 线路订单列表</span>
+						<ul class="leve2">
+							<li><span class="level3Style">已经出发订单</span></li>
+							<li><span class="level3Style">未出发订单</span></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		
+		<!-- 其他订单 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 其他订单 -</span>
+				<ul class="leve1">
+					<li><span class="level2Style">机票订单</span></li>
+					<li><span class="level2Style">酒店订单</span></li>
+				</ul>
+			</li>
+			
+		<!-- 用户管理 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 用户管理 -</span>
+				<ul class="leve1">
+					<li><a href="user_manage.html" target="_blank"><span class="level2Style">我的资料</span></a></li>
+					<li><a href="pwd_modify.html" target="_blank"><span class="level2Style">修改密码</span></a></li>
+					<li><a href="service_manage.html" target="_blank"><span class="level2Style">客服管理</span></a></li>
+				</ul>
+			</li>
+			
+		<!-- 联系方式 -->
+			<li>
+				<span class="level1Style" onclick="menuClick(this)">- 联系方式 -</span>
+			</li>
+		</ul>
+</div>
+
+<!--  -----------------右边内容部分--------------  -->
+<div class="right">
+    <div class="sear_banner">
+    	<ul>
+        	<li>
+            	<span>订单编号：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>客户姓名：</span>
+                <select id="country_select" style="width:90px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>面试时间：</span>
+                <select id="country_select" style="width:80px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>洲际：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>国家：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>领区：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>                                    
+            
+            <li>
+            	<span>签证类型：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>订单状态：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            
+            <li>
+            	<span>客服姓名：</span>
+                <select id="country_select" style="width:100px; height:20px;
+                	border:1px solid #C9D4E0;" name="choose">
+                	<option value="">请选择</option>
+                </select>
+            </li>
+            <li class="search_btn">搜索</li>                      
+        </ul>
+     </div>
+     
+     <div class="display_tab">
+     	<table border="1">
+        	<tr>
+            	<th width="80px">订单编号</th>
+                <th width="65px">订单状态</th>
+                <th>签证产品名称</th>
+                <th>出发日期</th>
+            	<th>客户姓名</th>
+                <th>客服</th>
+                <th>面试时间</th>
+                <th>送签员</th>
+            </tr>
+            <tr>
+            	<td><a href="client_order.html">SH-000001</a></td>
+                <td>已付款</td>
+                <td>德国旅游签证（上海领区）</td>
+                <td>2012/11/30</td>
+            	<td>
+                	张二 <br />
+                    李四 <br />
+                    王五 <br />
+                </td>
+                <td>张三</td>
+                <td>2012/11/17 09:30</td>
+                <td></td>     
+            </tr>
+            <tr>
+            	<td><a href="#">SH-000002</a></td>
+                <td>已付款</td>
+                <td>德国探亲访友签证（上海领区）</td>
+                <td>2012/11/30</td>
+            	<td>张二</td>
+                <td>张三</td>
+                <td>2012/11/17 09:30</td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td><a href="#">BJ-000001</a></td>
+                <td>已付款</td>
+                <td>德国探亲访友签证（北京领区）</td>
+                <td>2012/11/30</td>
+            	<td>
+                	张二 <br />
+                    李四 <br />
+                </td>
+                <td>张三</td>
+                <td>2012/11/17 09:30</td>
+                <td></td>                   
+            </tr>            
+        </table>	
+     </div>
+     
+</div>
+
+
+
+<!--  -----------------页脚部分--------------  -->
+<div class="footer">
+	    <p>
+			<a target="_blank" href="http://toplife.gotoip55.com/about.html">关于我们</a>
+			<a target="_blank" href="http://toplife.gotoip55.com/login_ty.html">同业系统</a>
+			<a target="_blank" href="http://toplife.gotoip55.com/visalists-8-1.html">签证服务</a>
+			<span><a target="_blank" href="http://toplife.gotoip55.com/show-7-61-1.html">付款方式</a></span>
+    	</p>
+    	<p>专业旅游签证公司，钧通商旅帮你忙</p>
+</div>
+
+</div>
+</body>
+</html>
+

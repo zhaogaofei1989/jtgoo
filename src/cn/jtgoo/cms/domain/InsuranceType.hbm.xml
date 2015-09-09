@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.jtgoo.cms.domain">
+	<class name="InsuranceType" table="jtgoo_insurance_type">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name"></property>
+		<property name="description"></property>
+		<property name="del_status" type="string" column="del_status" length="1"></property>
+		<set name="insurancePackageSet">
+        	<key column="insuranceTypeId"></key>
+        	<one-to-many class="InsurancePackage"/>
+        </set>
+	</class>
+
+</hibernate-mapping>
+
+
+
