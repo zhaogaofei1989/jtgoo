@@ -2,9 +2,7 @@ package cn.jtgoo.cms.web.struts.fenxiaoaction;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +15,11 @@ import org.apache.struts.action.ActionMapping;
 
 import cn.jtgoo.cms.base.BaseAction;
 import cn.jtgoo.cms.domain.BaoXianAttachment;
-import cn.jtgoo.cms.domain.DataTypeDetail;
 import cn.jtgoo.cms.domain.InsurancePackage;
 import cn.jtgoo.cms.domain.InsuranceType;
 import cn.jtgoo.cms.exception.AppException;
 import cn.jtgoo.cms.param.Delstatus;
 import cn.jtgoo.cms.param.Param;
-import cn.jtgoo.cms.rest.utils.FastJsonUtil;
 import cn.jtgoo.cms.util.HqlHelper;
 import cn.jtgoo.cms.util.PageBean;
 import cn.jtgoo.cms.web.struts.formbean.InsurancePackageActionForm;
